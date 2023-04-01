@@ -112,6 +112,13 @@ There is a process you can follow to get good results over and over... this will
 
 1. TODO
 2. Highres fix, [here](https://rentry.org/hiresfixjan23)
+3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
+
+To work from an SD-generated image that already exists (maybe someone sent it to you):
+1. In the WebUI, go to PNG Info tab
+2. Drop the image in
+3. Get parameters on the right, and you can send it right to the txt2img page
+    * Works because PNGs can store metadata
 
 ## Making New Stuff
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
