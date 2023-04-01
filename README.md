@@ -29,6 +29,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 2. Verify that the WebUI works
     1. Copy the URL the CLI outputs once done, e.g., ```127.0.0.1:7860``` (do **NOT** use Ctrl + C because this command can close the CLI)
     2. Paste into browser and voila; try a prompt and you're off to the races
+    3. Images will be saved automatically when generated to ```stable-diffusion-webui\outputs\txt2img-images\<date>```
 
 ![1](1.PNG)
 
@@ -61,3 +62,5 @@ In any case, it's just really good at generating people and most of the models o
 1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
     * You'll need to Torrent the leaked model or find it elsewhere
 2. Once you get the files into the folder for the WebUI and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
+3. Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
+4. Run free
