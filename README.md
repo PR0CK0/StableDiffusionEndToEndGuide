@@ -57,7 +57,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 ## NovelAI Model
 The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
 
-In any case, it's just really good at generating people and most of the models or LORAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LORAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders(VAEs), which brings true realism to the model.
+In any case, it's just really good at generating people and most of the models or LORAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LORAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
 
 1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
     * You'll need to Torrent the leaked model or find it elsewhere
