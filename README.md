@@ -23,11 +23,11 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * In step 3 I downloaded SD1.5, not the 2.x versions, as 1.5 produces much better results
     * In step 3, I also downloaded the "Deliberate" and "Dreamshaper" models, both of which have a focus on realism, with the latter, scenery and fantasy
     * [Civitai](https://civitai.com/) has all the SD models; it's like HuggingFace but for SD specifically
-2. Verify the WebUI works
+2. Verify that the WebUI works
     1. Copy the URL the CLI outputs once done, e.g., ```127.0.0.1:7860``` (do **NOT** use Ctrl + C because this command can close the CLI)
     2. Paste into browser and voila; try a prompt and you're off to the races
 
-![](1.png)
+![1](1.png)
 
 3. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/)
@@ -35,3 +35,5 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 4. Read up on SD knowledge in general:
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start)
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd)
+    * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
+    * [Random/Misc. SD Links](https://rentry.org/sdg-link)
