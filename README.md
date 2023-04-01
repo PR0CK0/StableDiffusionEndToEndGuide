@@ -92,7 +92,7 @@ Building upon the previous section... different models have different training d
 * [Kotosmix](https://rentry.org/sdg-motherload#kotosmix-v10) - general purpose, realism, anime, scenery, people, DPM++ 2M Karras sampler recommended
 
 ## VAEs
-Variable Autoencoders make images look better, crisper, less blown out. Some also fix hands and faces. But it's mostly a saturation and shading thing. Explained [here](https://rentry.org/sdvae). The NovelAI / Anything VAE is commonly used. It's basically an add-on to your model, just like a LoRA.
+Variable Autoencoders make images look better, crisper, less blown out. Some also fix hands and faces. But it's mostly a saturation and shading thing. Explained [here](https://rentry.org/sdvae) and [here](https://rentry.org/hdgrecipes#vae-preview-images) (NSFW). The NovelAI / Anything VAE is commonly used. It's basically an add-on to your model, just like a LoRA.
 1. Download one from the [VAE guide](https://rentry.org/sdvae#where-do-i-get-vaes-and-which-one-to-use)
 2. Follow [this](https://rentry.org/sdvae#how-do-i-use-a-vae) quick section of the guide to set up VAEs in the WebUI
     * Make sure to put them in ```stable-diffusion-webui\models\VAE\```
@@ -103,6 +103,7 @@ Variable Autoencoders make images look better, crisper, less blown out. Some als
 [VAE List](https://rentry.org/sdvae#main-vaes), used to find all the VAEs.
 
 * [NAI / Anything](https://civitai.com/models/66/anything-v3) - for anime models
+    * Comes with the NAI model by default when you put it into the models folder
 * [SD 1.5](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.safetensors) - for realistic models
 
 ## Putting it all Together
