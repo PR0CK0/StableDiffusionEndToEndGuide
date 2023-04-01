@@ -27,7 +27,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     1. Copy the URL the CLI outputs once done, e.g., ```127.0.0.1:7860``` (do **NOT** use Ctrl + C because this command can close the CLI)
     2. Paste into browser and voila; try a prompt and you're off to the races
 
-![1](1.png)
+![1](1.PNG)
 
 3. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/)
