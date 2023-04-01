@@ -46,7 +46,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
 3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
 4. Find new SD models and LORAs
-    * [Citavai](https://civitai.com/)
+    * [Civitai](https://civitai.com/)
     * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
     * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
     * [SDG LORA Motherload](https://rentry.org/sdg-lora-motherload) (NSFW)
