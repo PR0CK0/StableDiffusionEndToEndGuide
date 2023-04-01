@@ -1,8 +1,8 @@
 # Stable Diffusion Tests
-I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LORAs, which are like model fine-tuners... idea is to work with specific LORAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LORAs is also of interest. Later stuff may inlcude inpainting for perturbation.
+I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners... idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may inlcude inpainting for perturbation.
 
 ## Disclaimer
-``` Every link here may contain NSFW content, as most of the cutting-edge work on SD and LORAs is with porn or hentai. So, please be wary when you are working with these resources ```
+``` Every link here may contain NSFW content, as most of the cutting-edge work on SD and LoRAs is with porn or hentai. So, please be wary when you are working with these resources ```
 
 -TP
 
@@ -45,22 +45,28 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Simplified SD Goldmine](https://rentry.org/sdhypertextbook)
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
 3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
-4. Find new SD models and LORAs
-    * [Civitai](https://civitai.com/)
-    * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
-    * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
-    * [SDG LORA Motherload](https://rentry.org/sdg-lora-motherload) (NSFW)
-5. Mess around in the WebUI, play with different models, settings, etc.
+4. Mess around in the WebUI, play with different models, settings, etc.
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
     * Etc.
 
 ## NovelAI Model
 The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
 
-In any case, it's just really good at generating people and most of the models or LORAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LORAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
+In any case, it's just really good at generating people and most of the models or LoRAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LoRAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
 
 1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
     * You'll need to Torrent the leaked model or find it elsewhere
 2. Once you get the files into the folder for the WebUI and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
 3. Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
-4. Run free
+4. Find new SD models and LoRAs
+    * [Civitai](https://civitai.com/)
+    * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
+    * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
+    * [SDG LoRA Motherload](https://rentry.org/sdg-LoRA-motherload) (NSFW)
+5. Time to get a LoRA going
+    1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
+    2. You should now see an "Additional Networks" section in the UI
+    3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
+    4. Select and go
+
+![2](2.PNG)
