@@ -44,6 +44,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Simplified SD Goldmine](https://rentry.org/sdhypertextbook)
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
     * [FAQ](https://rentry.org/hdgfaq) (NSFW)
+    * [Another FAQ](https://rentry.org/sdg_FAQ)
 3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
 4. Mess around in the WebUI, play with different models, settings, etc.
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
