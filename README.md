@@ -112,13 +112,14 @@ Variable Autoencoders make images look better, crisper, less blown out. Some als
     * Comes with the NAI model by default when you put it into the models folder
 * [SD 1.5](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.safetensors) - for realistic models
 
-## Putting it all Together (TODO)
+## Putting it all Together (TODO, WIP, NOT DONE)
 There is a process you can follow to get good results over and over... this will be refined over time.
 
 1. TODO
 2. Highres fix, [here](https://rentry.org/hiresfixjan23)
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
+Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
 To work from an SD-generated image that already exists (maybe someone sent it to you):
 1. In the WebUI, go to PNG Info tab
 2. Drop the image in
