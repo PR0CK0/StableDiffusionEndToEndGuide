@@ -1,6 +1,9 @@
 # Stable Diffusion Tests
 I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LORAs, which are like model fine-tuners... idea is to work with specific LORAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LORAs is also of interest. Later stuff may inlcude inpainting for perturbation.
 
+## Disclaimer
+``` Every link here may contain NSFW content, as most of the cutting-edge work on SD and LORAs is with porn or hentai. So, please be wary when you are working with these resources ```
+
 -TP
 
 # Play With It!
@@ -29,12 +32,32 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 
 ![1](1.PNG)
 
-3. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
-    * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/)
-    * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (some images lower on the page are NSFW)
-4. Read up on SD knowledge in general:
+## Going Deeper
+
+1. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
+    * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/) 
+    * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
+2. Read up on SD knowledge in general:
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start)
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd)
     * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
+    * [Simplified SD Goldmine](https://rentry.org/sdhypertextbook)
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
-5. Mess around in the WebUI; there are lots of guides on this on YouTube and elsewhere
+3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
+4. Find new SD models and LORAs
+    * [Citavai](https://civitai.com/)
+    * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
+    * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
+    * [SDG LORA Motherload](https://rentry.org/sdg-lora-motherload) (NSFW)
+5. Mess around in the WebUI, play with different models, settings, etc.
+    * Play with keywords like () and [] (increase and decrease emphasis, respectively)
+    * Etc.
+
+## NovelAI Model
+The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
+
+In any case, it's just really good at generating people and most of the models or LORAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LORAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders(VAEs), which brings true realism to the model.
+
+1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
+    * You'll need to Torrent the leaked model or find it elsewhere
+2. Once you get the files into the folder for the WebUI and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
