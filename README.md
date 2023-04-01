@@ -74,6 +74,7 @@ In any case, it's just really good at generating people and most of the models o
     2. You should now see an "Additional Networks" section in the UI
     3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
     4. Select and go
+        * Just know that any LoRA you download probably has info describing how to use it... like "use the keyword tank" or something; make sure wherever you download it from (e.g., CivitAI), you read its description
 
 ![2](2.PNG)
 
