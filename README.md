@@ -1,5 +1,5 @@
 # Stable Diffusion Tests
-I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners... idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may inlcude inpainting for perturbation.
+I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Interestingly, the canonical SD WebUI has built-in functionality with anime/hentai image boards... Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners.. The idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may inlcude inpainting for perturbation.
 
 ## Disclaimer
 ``` Every link here may contain NSFW content, as most of the cutting-edge work on SD and LoRAs is with porn or hentai. So, please be wary when you are working with these resources ```
@@ -61,6 +61,7 @@ In any case, it's just really good at generating people and most of the models o
 4. Find new SD models and LoRAs
     * [Civitai](https://civitai.com/)
     * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
+    * [SDG Models](https://rentry.org/sdmodels)
     * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
     * [SDG LoRA Motherload](https://rentry.org/sdg-LoRA-motherload) (NSFW)
 5. Time to get a LoRA going
