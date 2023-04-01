@@ -37,3 +37,4 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd)
     * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
+5. Mess around in the WebUI; there are lots of guides on this on YouTube and elsewhere
