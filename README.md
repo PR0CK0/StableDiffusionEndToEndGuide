@@ -99,12 +99,21 @@ Variable Autoencoders make images look better, crisper, less blown out. Some als
 3. Play around with making images with and without your VAE, to see the differences
 
 ## Playing with VAEs
-
 [VAE List](https://rentry.org/sdvae#main-vaes), used to find all the VAEs.
 
 * [NAI / Anything](https://civitai.com/models/66/anything-v3) - for anime models
     * Comes with the NAI model by default when you put it into the models folder
 * [SD 1.5](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.safetensors) - for realistic models
 
-## Putting it all Together
-TODO
+## Putting it all Together (TODO)
+There is a process you can follow to get good results over and over... this will be refined over time.
+
+1. TODO
+2. Highres fix, [here](https://rentry.org/hiresfixjan23)
+
+## Making New Stuff
+* Browse every topic of interest [here](https://rentry.org/rentrysd)
+  * [Training LoRAs](https://rentry.org/ezlora)
+  * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
+  * [Merging models](https://rentry.org/hdgrecipes)
+  * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
