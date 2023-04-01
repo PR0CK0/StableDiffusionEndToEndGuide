@@ -24,8 +24,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * Step 3 takes 15-45 minutes on average Internet speed, as the models are 5+ GB each
     * Step 7 can take upwards of half an hour and may seem "stuck" in the CLI
     * In step 3 I downloaded SD1.5, not the 2.x versions, as 1.5 produces much better results
-    * In step 3, I also downloaded the "Deliberate" and "Dreamshaper" models, both of which have a focus on realism, with the latter, scenery and fantasy
-    * [Civitai](https://civitai.com/) has all the SD models; it's like HuggingFace but for SD specifically
+    * [CivitAI](https://CivitAI.com/) has all the SD models; it's like HuggingFace but for SD specifically
 2. Verify that the WebUI works
     1. Copy the URL the CLI outputs once done, e.g., ```127.0.0.1:7860``` (do **NOT** use Ctrl + C because this command can close the CLI)
     2. Paste into browser and voila; try a prompt and you're off to the races
@@ -39,31 +38,34 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/) 
     * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
 2. Read up on SD knowledge in general:
-    * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start)
-    * [Stable Diffusion Links Hub](https://rentry.org/rentrysd)
+    * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
+    * [Stable Diffusion Links Hub](https://rentry.org/rentrysd) (incredible 4chan resource)
     * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
     * [Simplified SD Goldmine](https://rentry.org/sdhypertextbook)
     * [Random/Misc. SD Links](https://rentry.org/sdg-link)
+    * [FAQ](https://rentry.org/hdgfaq) (NSFW)
 3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
 4. Mess around in the WebUI, play with different models, settings, etc.
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
     * Etc.
 
-## NovelAI Model
+## NovelAI (NAI) Model
 The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
 
-In any case, it's just really good at generating people and most of the models or LoRAs you will play with merging are compatible with it because they are derived from it. Also, humans present a really good starting use case for fine-tuning exactly what LoRAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
+In any case, it's just really good at generating people and most of the models or LoRAs you will play with merging are compatible with it because they are trained on anime images. Also, humans present a really good starting use case for fine-tuning exactly what LoRAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
 
 1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
     * You'll need to Torrent the leaked model or find it elsewhere
 2. Once you get the files into the folder for the WebUI and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
+    * If you have trouble here, copy the config.yaml file from the folder where the model was and follow the same naming scheme (like in this [guide](https://rentry.org/voldy#-novelai-setup-))
 3. Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
 4. Find new SD models and LoRAs
-    * [Civitai](https://civitai.com/)
+    * [CivitAI](https://CivitAI.com/)
     * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
     * [SDG Models](https://rentry.org/sdmodels)
     * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
     * [SDG LoRA Motherload](https://rentry.org/sdg-LoRA-motherload) (NSFW)
+    * [Lots of popular models (also the prompting guide from earlier)](https://rentry.org/hdgpromptassist#models) (NSFW)
 5. Time to get a LoRA going
     1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
     2. You should now see an "Additional Networks" section in the UI
@@ -71,3 +73,36 @@ In any case, it's just really good at generating people and most of the models o
     4. Select and go
 
 ![2](2.PNG)
+
+## Playing with Models
+Building upon the previous section... different models have different training data and training keywords... so using booru tags on some models doesn't work very well. Below are some of the models I played with and the "instructions" for them.
+
+[SDG Model Motherload](https://rentry.org/sdg-motherload), used to get all of the models, I'm just summarizing the instructions here for quick reference; most of the models are for literal porn, I focused on the realistic ones. Follow the links to see example prompts, images and detailed notes on using each of them.
+
+* Default SD model (built-in)
+* NovelAI model (from the [first guide](https://rentry.org/voldy))
+* [Anything v3](https://huggingface.co/cag/anything-v3-1) - general purpose anime model
+* [Dreamshaper](https://CivitAI.com/api/download/models/5636) - realism, all-purpose 
+* [Deliberate](https://CivitAI.com/api/download/models/5616) - realism, fantasy, paintings, scenery
+* [Neverending Dream](https://rentry.org/sdg-motherload#neverending-dream-ned) - realism, fantasy, good for people and animals
+    * Uses the booru tag system
+* [Epic Diffusion](https://rentry.org/sdg-motherload#epic-diffusion-11) - ultra-realism, intended to replace original SD
+* [AbyssOrangeMix (AOM)](https://rentry.org/sdg-motherload#abyssorangemix-aom-various) - anime, realism, artistic, paintings, extremely common and good for testing
+* [Kotosmix](https://rentry.org/sdg-motherload#kotosmix-v10) - general purpose, realism, anime, scenery, people, DPM++ 2M Karras sampler recommended
+
+## VAEs
+Variable Autoencoders make images look better, crisper, less blown out. Some also fix hands and faces. But it's mostly a saturation and shading thing. Explained [here](https://rentry.org/sdvae). The NovelAI / Anything VAE is commonly used. It's basically an add-on to your model, just like a LoRA.
+1. Download one from the [VAE guide](https://rentry.org/sdvae#where-do-i-get-vaes-and-which-one-to-use)
+2. Follow [this](https://rentry.org/sdvae#how-do-i-use-a-vae) quick section of the guide to set up VAEs in the WebUI
+    * Make sure to put them in ```stable-diffusion-webui\models\VAE\```
+3. Play around with making images with and without your VAE, to see the differences
+
+## Playing with VAEs
+
+[VAE List](https://rentry.org/sdvae#main-vaes), used to find all the VAEs.
+
+* [NAI / Anything](https://civitai.com/models/66/anything-v3) - for anime models
+* [SD 1.5](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.safetensors) - for realistic models
+
+## Putting it all Together
+TODO
