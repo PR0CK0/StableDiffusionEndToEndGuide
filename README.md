@@ -127,6 +127,8 @@ To work from an SD-generated image that already exists (maybe someone sent it to
 3. Get parameters on the right, and you can send it right to the txt2img page
     * Works because PNGs can store metadata
 
+A good way to learn is to browse cool images on CivitAI, open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here]. But you can generally get pretty close.
+
 ## Making New Stuff
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
   * [Training LoRAs](https://rentry.org/ezlora)
