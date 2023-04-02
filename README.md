@@ -229,6 +229,7 @@ A really good resource on SD comparisons can be found [here](https://github.com/
 I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234) and used the tank LoRA to make this X/Y grid. You can see how the various models and samplers work with each other. From this test, we can evaluate that: 
 
 * The models ChilloutMix, Deliberate, Dreamlike Photoreal and Epic Diffusion seem to produce the most "realistic" tank images
+* In later independent tests, it was found that the Protogen X34 Photorealism and SpyBGs Toolkit were both pretty good at tanks too.
 * The most promising samplers here seem to be DPM++ SDE or any of the Karras samplers.
 
 ![tanks](xyz_grid-0002-1656460887.jpg)
