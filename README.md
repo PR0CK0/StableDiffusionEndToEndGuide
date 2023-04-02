@@ -153,7 +153,7 @@ restore faces and hires fix?? i use them but how do they work?
 
 I got a few errors now and again. Mostly out of memory (VRAM) errors that were fixed by lowering values on some parameters. Sometimes the Restore faces and Hires. fix settings can cause this. One error that plagued me was a NaN error, something to the effect of "a VAE produced a NaN something", so to stop this, I added the parameter ```--disable-nan-check``` to the ```stable-diffusion-webui\webui-user.bat``` file, on the line ```set COMMANDLINE_ARGS=```.
 
-If you ever get black images, add ```"--no-half```.
+If you ever get black images, add ```--no-half```.
 
 ## Getting Comfortable
 Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally.
