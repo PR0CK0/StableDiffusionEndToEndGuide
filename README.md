@@ -203,6 +203,7 @@ I got a few errors now and again. Mostly out of memory (VRAM) errors that were f
 * If you ever get black images, add ```--no-half```
 * If you keep running out of VRAM, add ```--medvram``` or for potato computers, ```--lowvram```
 * Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
+* Slow model loading (when switching to a new one) is probably because .safetensors files load slowly if things aren't configured properly. [This](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/5893) thread discusses it.
 
 All commandline arguments can be found [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings).
 
