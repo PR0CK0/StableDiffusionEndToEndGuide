@@ -171,7 +171,7 @@ The general process for a WebUI workflow is:
 * [extra](https://rentry.org/sdhypertextbook#extra) - final image edits (will discuss later)
 
 ### txt2img Settings
-More or less a digest of [this](https://rentry.org/sdhypertextbook#txt2img) guide's information.
+This section is more or less a digest of [this](https://rentry.org/sdhypertextbook#txt2img) guide's information.
 * More sampling steps generally means more accuracy (except for "a" samplers, like Euler a, that change every so often)
 * Restore faces can be done in the Extras tab after generation
 * Highres. fix is good for images above 512x512; useful if there is more than one person in an image
