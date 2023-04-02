@@ -98,7 +98,12 @@ In any case, it's just really good at generating people and most of the models o
 ## LoRA
 [Low-Rank Adaptation (LoRA)](https://huggingface.co/blog/lora) allows fine-tuning for a given model. In the WebUI, you can add LoRAs to a model like icing on a cake. Training new LoRAs is also pretty easy. There are other, "ancestral" means of fine-tuning (e.g., textual inversion and hypernetworks), but LoRAs are the state-of-the-art.
 
-Here is a LoRA from CivitAI that generates [tanks](https://civitai.com/models/14234/ztz-99a-tank) and another that generates [fighter jets](https://civitai.com/models/6975/fighter-jet-lora). I will use the tank LoRA throughout the guide. Please note that this is not a very good LoRA, as it is meant for anime-style images, but it is fine to play around with.
+* [ZTZ99A Tank](https://civitai.com/models/14234/ztz-99a-tank) - military tank LoRA (a specific tank) 
+* [Fighter Jets](https://civitai.com/models/6975/fighter-jet-lora) - fighter jet LoRA
+* [epi_noiseoffset](https://civitai.com/models/13941/epinoiseoffset) - LoRA that makes images pop, increases contrast
+
+
+I will use the tank LoRA throughout the guide. Please note that this is not a very good LoRA, as it is meant for anime-style images, but it is fine to play around with.
 
 1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
 2. You should now see an "Additional Networks" section in the UI
@@ -155,14 +160,14 @@ A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sit
 
 The general process for a WebUI workflow is:
 
-```txt2img -> img2img -> inpainting -> extra```
+```find/pick models/LoRAs -> txt2img (repeat, change params, etc.) -> img2img -> inpainting -> extra -> ```
 
 * [txt2img](https://rentry.org/sdhypertextbook#txt2img) - prompt and get images
 * [img2img](https://rentry.org/sdhypertextbook#txt2img) - edit images and generate similar ones
 * [inpainting](https://rentry.org/sdhypertextbook#inpainting) - edit parts of images (will discuss later)
 * [extra](https://rentry.org/sdhypertextbook#extra) - final image edits (will discuss later)
 
-### txt2img settings
+### txt2img Settings
 More or less a digest of [this](https://rentry.org/sdhypertextbook#txt2img) guide's information.
 * More sampling steps generally means more accuracy (except for "a" samplers, like Euler a, that change every so often)
 * Restore faces can be done in the Extras tab after generation
@@ -195,21 +200,27 @@ All commandline arguments can be found [here](https://github.com/AUTOMATIC1111/s
 ## Getting Comfortable
 Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally, this mirrors the extensions Github [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Extensions).
 
-* [Tag Completer](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) - Recommends and auto-completes booru tags as you type
-* [Stable Diffusion Web UI State](https://github.com/ilian6806/stable-diffusion-webui-state) - Preserves the UI state even after restarting
-* [Test My Prompt](https://github.com/Extraltodeus/test_my_prompt) - A script that you can run to remove individual words from your prompt to see how it affects image generation
-* [Model-Keyword](https://github.com/mix1009/model-keyword) - Autofills keywords associated with some models and LoRAs, pretty well-maintained and up-to-date as of Apr. 2023
-* [NSFW Checker](https://github.com/AUTOMATIC1111/stable-diffusion-webui-nsfw-censor) - Blacks out NSFW images; useful if you are working in an office, as a lot of good models allow NSFW content and you may not want to see that at work
+* [Tag Completer](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) - recommends and auto-completes booru tags as you type
+* [Stable Diffusion Web UI State](https://github.com/ilian6806/stable-diffusion-webui-state) - preserves the UI state even after restarting
+* [Test My Prompt](https://github.com/Extraltodeus/test_my_prompt) - a script that you can run to remove individual words from your prompt to see how it affects image generation
+* [Model-Keyword](https://github.com/mix1009/model-keyword) - autofills keywords associated with some models and LoRAs, pretty well-maintained and up-to-date as of Apr. 2023
+* [NSFW Checker](https://github.com/AUTOMATIC1111/stable-diffusion-webui-nsfw-censor) - blacks out NSFW images; useful if you are working in an office, as a lot of good models allow NSFW content and you may not want to see that at work
 * [Gelbooru Prompt](https://github.com/antis0007/sd-webui-gelbooru-prompt) - pulls tags and creates an automatic-prompt from any Gelbooru image using its hash
 * [booru2prompt](https://github.com/Malisius/booru2prompt) - similar to Gelbooru Prompt but a bit more functionality
+* [Dynamic Prompting](https://github.com/adieyal/sd-dynamic-prompts) - a template language for prompt generation that allows you to run random or combinatorial prompts to generate various images (uses wildcards)
+* [Model toolkit](https://github.com/arenatemp/stable-diffusion-webui-model-toolkit) - popular extension that helps you manage, edit and create models
 
 ## Testing
-So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination.
+So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination, so it can take a while.
 
 A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
 
+I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234) and used the tank LoRA to make this X/Y grid. You can see how the various models and samplers work with each other.
+
+![tanks](xyz_grid-0002-1656460887.jpg)
+
 # Advanced
-In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the WebUI.
+In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the txt2image tab of the WebUI.
 
 ## Img2Img
 TODO
