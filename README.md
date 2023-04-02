@@ -213,6 +213,8 @@ TODO
 # Google Colab Setup
 TODO
 
+This is an important step if you have to work away from your rig. Google Colab Pro is 10 dollars a month and gives you 89 GB of RAM and access to good GPUs, so you can technically run prompts from your phone and have them work for you on a server in Timbuktu. If you don't mind a bit of extra cost, Google Colab Pro+ is 50 dollars a month and is even better.
+
 # Junkyard
 Stuff I don't know much about but need to look into
 
