@@ -135,3 +135,6 @@ A good way to learn is to browse cool images on CivitAI, open what you like and 
   * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
   * [Merging models](https://rentry.org/hdgrecipes)
   * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
+
+# Google Colab Setup
+TODO
