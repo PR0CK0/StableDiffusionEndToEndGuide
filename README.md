@@ -25,6 +25,10 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     5. [Playing with Models](#playing-with-models)
     6. [VAEs](#vaes)
     7. [Put it all Together](#put-it-all-together)
+        1. [The General SD Process](#the-general-sd-process)
+        2. [txt2img Settings](#txt2img-settings)
+        3. [Regenerating a Previously-Generated Image](#regenerating-a-previously-generated-image)
+        4. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
 2. [Advanced](#advanced) (WIP)
@@ -58,6 +62,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 
 1. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/) 
+    * [A succint prompting guide](https://rentry.org/sdhypertextbook#syntax)
     * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
 2. Read up on SD knowledge in general:
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
@@ -148,6 +153,22 @@ Here are some general notes and helpful things I learned along the way that do n
 ### The General SD Process
 A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here](https://github.com/civitai/civitai/wiki/Image-Reproduction). But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
 
+The general process for a WebUI workflow is:
+
+```txt2img -> img2img -> inpainting -> extra```
+
+* [txt2img](https://rentry.org/sdhypertextbook#txt2img) - prompt and get images
+* [img2img](https://rentry.org/sdhypertextbook#txt2img) - edit images and generate similar ones
+* [inpainting](https://rentry.org/sdhypertextbook#inpainting) - edit parts of images (will discuss later)
+* [extra](https://rentry.org/sdhypertextbook#extra) - final image edits (will discuss later)
+
+### txt2img settings
+More or less a digest of [this](https://rentry.org/sdhypertextbook#txt2img) guide's information.
+* More sampling steps generally means more accuracy (except for "a" samplers, like Euler a, that change every so often)
+* Restore faces can be done in the Extras tab after generation
+* Highres. fix is good for images above 512x512; useful if there is more than one person in an image
+* CFG is best at low-middle values, like 5-10
+
 ### Regenerating a Previously-Generated Image
 To work from an SD-generated image that already exists; maybe someone sent it to you or you want to recreate one you made:
 
@@ -168,6 +189,8 @@ I got a few errors now and again. Mostly out of memory (VRAM) errors that were f
 * If you ever get black images, add ```--no-half```
 * If you keep running out of VRAM, add ```--medvram``` or for potato computers, ```--lowvram```
 * Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
+
+All commandline arguments can be found [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings).
 
 ## Getting Comfortable
 Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally, this mirrors the extensions Github [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Extensions).
