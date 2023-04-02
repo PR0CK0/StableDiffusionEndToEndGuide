@@ -131,6 +131,7 @@ Building upon the previous section... different models have different training d
 
 [CivitAI](https://CivitAI.com/) was used to get all the others. You need to **make an account** otherwise you will not be able to see NSFW stuff, including weapons and military equipment.  On CivitAI, some models (checkpoints) include VAEs; if it states this, download it as well and place it alongside the model.
 
+* [ChilloutMix](https://civitai.com/models/6424/chilloutmix) - ultra-realism, portraits, one of the most popular
 * [Protogen x3.4](https://civitai.com/models/3666/protogen-x34-photorealism-official-release) - ultra-realism
     * Use trigger words: modelshoot style, analog style, mdjrny-v4-style, nousr robot
 * [Dreamlike Photoreal 2.0](https://civitai.com/models/3811/dreamlike-photoreal-20) - ultra-realism
@@ -215,7 +216,10 @@ So now you have some models, LoRAs and prompts... how can you test to see what w
 
 A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
 
-I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234) and used the tank LoRA to make this X/Y grid. You can see how the various models and samplers work with each other.
+I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234) and used the tank LoRA to make this X/Y grid. You can see how the various models and samplers work with each other. From this test, we can evaluate that: 
+
+* The models ChilloutMix, Deliberate, Dreamlike Photoreal and Epic Diffusion seem to produce the most "realistic" tank images
+* The most promising samplers here seem to be DPM++ SDE or any of the Karras samplers.
 
 ![tanks](xyz_grid-0002-1656460887.jpg)
 
