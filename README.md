@@ -118,7 +118,7 @@ Building upon the previous section... different models have different training d
 
 [SDG Model Motherload](https://rentry.org/sdg-motherload), used to get most of the models, I'm just summarizing the instructions here for quick reference; most of the models are for literal porn, I focused on the realistic ones. Follow the links to see example prompts, images and detailed notes on using each of them.
 
-* Default SD model (built-in)
+* Default SD model (1.5, from the setup step; you can play with SD's 2.x versions but to be frank, they suck)
 * NovelAI model (from the [first guide](https://rentry.org/voldy))
 * [Anything v3](https://huggingface.co/cag/anything-v3-1) - general purpose anime model
 * [Dreamshaper](https://CivitAI.com/api/download/models/5636) - realism, all-purpose 
