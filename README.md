@@ -146,7 +146,7 @@ Find VAEs at the [VAE List](https://rentry.org/sdvae#main-vaes):
 Here are some general notes and helpful things I learned along the way that do not necessarily fit the chronological flow of this guide.
 
 ### The General SD Process
-A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here]. But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
+A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here](https://github.com/civitai/civitai/wiki/Image-Reproduction). But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
 
 ### Regenerating a Previously-Generated Image
 To work from an SD-generated image that already exists; maybe someone sent it to you or you want to recreate one you made:
