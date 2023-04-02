@@ -301,5 +301,3 @@ There is a process you can follow to get good results over and over... this will
 controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
 
 chatgpt integration?
-
-xformers
