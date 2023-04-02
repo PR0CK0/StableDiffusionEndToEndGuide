@@ -32,10 +32,11 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
 2. [Advanced](#advanced) (WIP)
-    1. [Img2Img](#img2img)
-    2. [Inpainting](#inpainting)
-    3. [Extras](#checkpoint-merger)
-    4. [Making New Stuff](#making-new-stuff)
+    1. [Prompt Editing](#prompt-editing)
+    2. [Img2Img](#img2img)
+    3. [Inpainting](#inpainting)
+    4. [Extras](#checkpoint-merger)
+    5. [Making New Stuff](#making-new-stuff)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
@@ -64,6 +65,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/) 
     * [A succint prompting guide](https://rentry.org/sdhypertextbook#syntax)
     * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
+    * Prompt terms have precedence: earlier terms have more weight
 2. Read up on SD knowledge in general:
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd) (incredible 4chan resource)
@@ -73,7 +75,9 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [FAQ](https://rentry.org/hdgfaq) (NSFW)
     * [Another FAQ](https://rentry.org/sdg_FAQ)
 3. Join the Stable Diffusion [Discord](https://discord.com/invite/stablediffusion)     
-4. Mess around in the WebUI, play with different models, settings, etc.
+4. Keep up to date with Stable Diffsion [news](https://rentry.org/sdupdates3)
+    * Did you know that as of March 2023, a 1.7B parameter text-to-video diffusion model is available?
+5. Mess around in the WebUI, play with different models, settings, etc.
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
     * Etc.
 
@@ -211,6 +215,7 @@ Some extensions can make using the WebUI better. Get the Github link, go to Exte
 * [Gelbooru Prompt](https://github.com/antis0007/sd-webui-gelbooru-prompt) - pulls tags and creates an automatic-prompt from any Gelbooru image using its hash
 * [booru2prompt](https://github.com/Malisius/booru2prompt) - similar to Gelbooru Prompt but a bit more functionality
 * [Dynamic Prompting](https://github.com/adieyal/sd-dynamic-prompts) - a template language for prompt generation that allows you to run random or combinatorial prompts to generate various images (uses wildcards)
+    * Described some more [here](https://medium.com/@soapsudtycoon/stable-diffusion-prompt-engineering-toolkit-8f48bc447dc1)
 * [Model toolkit](https://github.com/arenatemp/stable-diffusion-webui-model-toolkit) - popular extension that helps you manage, edit and create models
 
 ## Testing
@@ -239,16 +244,25 @@ The exact parameters used (not including the model or sampler) for every one of 
 # Advanced
 In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the txt2image tab of the WebUI.
 
+## Prompt Editing
+Also known as prompt blending. Prompt editing allows you to have the model change its prompt on specified steps. The below image was taken from a 4chan post and describes the technique. For instance, as stated in this [guide](https://stable-diffusion-art.com/prompt-guide/), prompt editing can be used to blend faces.
+
+![](prompt_editing.png)
+
+## Xformers
+[Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
+
 ## Img2Img
-TODO
+**TODO**
 
 ## Inpainting
-TODO
+**TODO**
 
 ## Extras
-TODO
+**TODO**
 
 ## Making New Stuff
+This is all well and good, but sometimes you need better models or LoRAs for professional use cases. Because most of the SD content is literally meant for generating women or porn, specific models and LoRAs may need to be trained.
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
   * [Training LoRAs](https://rentry.org/ezlora)
   * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
@@ -256,13 +270,17 @@ TODO
   * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
 
 ### Checkpoint Merger
-TODO
+**TODO**
+
+The checkpoint merger tab in the WebUI lets you combine two models together, like mixing two sauces in a pot, where the output is a new sauce that is a combination of both of them.
 
 ### Training LoRAs
-TODO
+**TODO**
+
+Training a LoRA is not necessarily hard, it's just a matter of gathering enough data.
 
 # Google Colab Setup
-TODO
+**TODO**
 
 This is an important step if you have to work away from your rig. Google Colab Pro is 10 dollars a month and gives you 89 GB of RAM and access to good GPUs, so you can technically run prompts from your phone and have them work for you on a server in Timbuktu. If you don't mind a bit of extra cost, Google Colab Pro+ is 50 dollars a month and is even better.
 
@@ -278,12 +296,6 @@ There is a process you can follow to get good results over and over... this will
 
 controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
 
-wildcards?
-prompt languages?
-prompt substep inputs (image on phone)?
-
 chatgpt integration?
 
 xformers
-
-restore faces and hires fix?? i use them but how do they work?
