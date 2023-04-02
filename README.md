@@ -172,7 +172,7 @@ The general process for a WebUI workflow is:
 ```find/pick models/LoRAs -> txt2img (repeat, change params, etc.) -> img2img -> inpainting -> extra -> ```
 
 * [txt2img](https://rentry.org/sdhypertextbook#txt2img) - prompt and get images
-* [img2img](https://rentry.org/sdhypertextbook#txt2img) - edit images and generate similar ones
+* [img2img](https://rentry.org/sdhypertextbook#img2img) - edit images and generate similar ones
 * [inpainting](https://rentry.org/sdhypertextbook#inpainting) - edit parts of images (will discuss later)
 * [extra](https://rentry.org/sdhypertextbook#extra) - final image edits (will discuss later)
 
@@ -254,16 +254,22 @@ Also known as prompt blending. Prompt editing allows you to have the model chang
 ![](prompt_editing.png)
 
 ## Xformers
-[Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
+[Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation (measured in it/s) on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
 
-## Img2Img
-**TODO**
+## img2img
+Not exactly used much, sort of a confusing tab. Can be used to generate images given sketches, like in the [Huggingface Image to Image SD Playground](https://huggingface.co/spaces/huggingface-projects/diffuse-the-rest). This tab has a sub-tab, inpainting, which is the subject of the next section and a very important capability of the WebUI. While you can use this section to generate altered images given one you already made (output to ```stable-diffusion-webui\outputs\img2img-images```), the functionality is spotty to me... it seems to use an insane amount of memory and I can barely get it to work. Go to the next section below.
 
 ## Inpainting
-**TODO**
+TODO
+
+This is where the power lies for the content creator or someone interested in image perturbation. Output is in ```stable-diffusion-webui\outputs\img2img-images\```.
+
+* [Inpainting and outpainting guide](https://rentry.org/drfar)
+* [4chan inpainting](https://rentry.org/inpainting-guide-SD) (NSFW)
+* [Definitive inpainting guide](https://stable-diffusion-art.com/inpainting_basics/)
 
 ## Extras
-**TODO**
+This WebUI tab is specifically for upscaling. If you get an image you really like, you can upscale it here at the end of your workflow. Upscaled images are stored in ```stable-diffusion-webui\outputs\extras-images```. Some of the memory issues associated with upscaling with more powerful upscalers during generation in the txt2img tab (e.g., the 4x+ ones) do not happen here because you are not generating new images, you are only upscaling static ones.
 
 ## Making New Stuff
 This is all well and good, but sometimes you need better models or LoRAs for professional use cases. Because most of the SD content is literally meant for generating women or porn, specific models and LoRAs may need to be trained.
