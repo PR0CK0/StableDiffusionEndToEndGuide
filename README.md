@@ -1,7 +1,7 @@
 # Stable Diffusion Tests
 I became interested in using SD to generate images for military applications. Most of the resources are taken from 4chan's NSFW boards, as anons use SD to make hentai. Interestingly, the canonical SD WebUI has built-in functionality with anime/hentai image boards... One of the first use cases of SD right after DALL-E was generating anime girls, so the jump to hentai is not surprising. 
 
-Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners. The idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may inlcude inpainting for perturbation.
+Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners. The idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may include inpainting for perturbation.
 
 ## Disclaimer
 ```Every link here may contain NSFW content, as most of the cutting-edge work on SD and LoRAs is with porn or hentai. So, please be wary when you are working with these resources. ```
@@ -26,9 +26,15 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     6. [VAEs](#vaes)
     7. [Put it all Together](#put-it-all-together)
     8. [Getting Comfortable](#getting-comfortable)
-    9.  [Testing](#testing)
-1. [Advanced](#advanced)
-    1. [Making New Stuff](#making-new-stuff)
+    9. [Testing](#testing)
+2. [Advanced](#advanced) (WIP)
+    1. [Img2Img](#img2img)
+    2. [Inpainting](#inpainting)
+    3. [Extras](#checkpoint-merger)
+    4. [Making New Stuff](#making-new-stuff)
+        1. [Checkpoint Merger](#checkpoint-merger)
+        2. [Training LoRAs](#training-loras)
+3. [Google Colab Setup](#google-colab-setup) (WIP)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -137,9 +143,78 @@ Find VAEs at the [VAE List](https://rentry.org/sdvae#main-vaes):
 3. Play around with making images with and without your VAE, to see the differences
 
 ## Put it all Together
+Here are some general notes and helpful things I learned along the way that do not necessarily fit the chronological flow of this guide.
+
+### The General SD Process
+A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here]. But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
+
+### Regenerating a Previously-Generated Image
+To work from an SD-generated image that already exists; maybe someone sent it to you or you want to recreate one you made:
+
+1. In the WebUI, go to the PNG Info tab
+2. Drag and drop the image you are interested into the UI
+    * They are saved in ```stable-diffusion-webui\outputs\txt2img-images\<date>```
+3. See the used parameters on the right
+    * Works because PNGs can store metadata
+4. You can send it right to the txt2img page with the corresponding button
+    * Might have to check back and forth to make sure the model, VAE and other parameters auto-populate correctly
+
+Be aware, some sites remove PNG metadata when images are uploaded (e.g., 4chan), so look for URLs to the full images or use sites that retain SD metadata, like CivitAI or AIbooru.
+
+### Troubleshooting Errors
+I got a few errors now and again. Mostly out of memory (VRAM) errors that were fixed by lowering values on some parameters. Sometimes the Restore faces and Hires. fix settings can cause this. In the file ```stable-diffusion-webui\webui-user.bat```, on the line ```set COMMANDLINE_ARGS=```, you can put some flags that fix common errors.
+
+* A NaN error, something to the effect of "a VAE produced a NaN something", add the parameter ```--disable-nan-check```
+* If you ever get black images, add ```--no-half```
+* If you keep running out of VRAM, add ```--medvram``` or for potato computers, ```--lowvram```
+* Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
+
+## Getting Comfortable
+Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally, this mirrors the extensions Github [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Extensions).
+
+* [Tag Completer](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) - Recommends and auto-completes booru tags as you type
+* [Stable Diffusion Web UI State](https://github.com/ilian6806/stable-diffusion-webui-state) - Preserves the UI state even after restarting
+* [Test My Prompt](https://github.com/Extraltodeus/test_my_prompt) - A script that you can run to remove individual words from your prompt to see how it affects image generation
+* [Model-Keyword](https://github.com/mix1009/model-keyword) - Autofills keywords associated with some models and LoRAs, pretty well-maintained and up-to-date as of Apr. 2023
+* [NSFW Checker](https://github.com/AUTOMATIC1111/stable-diffusion-webui-nsfw-censor) - Blacks out NSFW images; useful if you are working in an office, as a lot of good models allow NSFW content and you may not want to see that at work
+* [Gelbooru Prompt](https://github.com/antis0007/sd-webui-gelbooru-prompt) - pulls tags and creates an automatic-prompt from any Gelbooru image using its hash
+* [booru2prompt](https://github.com/Malisius/booru2prompt) - similar to Gelbooru Prompt but a bit more functionality
+
+## Testing
+So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination.
+
+A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
+
+# Advanced
+In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the WebUI.
+
+## Img2Img
 TODO
 
+## Inpainting
 TODO
+
+## Extras
+TODO
+
+## Making New Stuff
+* Browse every topic of interest [here](https://rentry.org/rentrysd)
+  * [Training LoRAs](https://rentry.org/ezlora)
+  * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
+  * [Merging models](https://rentry.org/hdgrecipes)
+  * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
+
+### Checkpoint Merger
+TODO
+
+### Training LoRAs
+TODO
+
+# Google Colab Setup
+TODO
+
+# Junkyard
+Stuff I don't know much about but need to look into
 
 There is a process you can follow to get good results over and over... this will be refined over time.
 
@@ -147,16 +222,6 @@ There is a process you can follow to get good results over and over... this will
 2. Highres fix, [here](https://rentry.org/hiresfixjan23)
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
-Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
-To work from an SD-generated image that already exists (maybe someone sent it to you):
-1. In the WebUI, go to PNG Info tab
-2. Drop the image in
-3. Get parameters on the right, and you can send it right to the txt2img page
-    * Works because PNGs can store metadata
-
-A good way to learn is to browse cool images on CivitAI, open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here]. But you can generally get pretty close.
-
-NSFW extension for work
 
 controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
 
@@ -166,30 +231,6 @@ prompt substep inputs (image on phone)?
 
 chatgpt integration?
 
+xformers
+
 restore faces and hires fix?? i use them but how do they work?
-
-I got a few errors now and again. Mostly out of memory (VRAM) errors that were fixed by lowering values on some parameters. Sometimes the Restore faces and Hires. fix settings can cause this. One error that plagued me was a NaN error, something to the effect of "a VAE produced a NaN something", so to stop this, I added the parameter ```--disable-nan-check``` to the ```stable-diffusion-webui\webui-user.bat``` file, on the line ```set COMMANDLINE_ARGS=```.
-
-If you ever get black images, add ```--no-half```.
-
-## Getting Comfortable
-Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally.
-* [Tag Completer](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) - Recommends and auto-completes booru tags as you type
-* [Stable Diffusion Web UI State](https://github.com/ilian6806/stable-diffusion-webui-state) - Preserves the UI state even after restarting
-
-## Testing
-So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination.
-
-A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
-
-# Advanced
-
-## Making New Stuff
-* Browse every topic of interest [here](https://rentry.org/rentrysd)
-  * [Training LoRAs](https://rentry.org/ezlora)
-  * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
-  * [Merging models](https://rentry.org/hdgrecipes)
-  * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
-
-# Google Colab Setup
-TODO
