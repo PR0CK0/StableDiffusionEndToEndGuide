@@ -26,7 +26,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     6. [VAEs](#vaes)
     7. [Put it all Together](#put-it-all-together)
     8. [Getting Comfortable](#getting-comfortable)
-    9  [Testing](#testing)
+    9.  [Testing](#testing)
 1. [Advanced](#advanced)
     1. [Making New Stuff](#making-new-stuff)
 
