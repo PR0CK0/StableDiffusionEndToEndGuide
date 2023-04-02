@@ -156,6 +156,8 @@ Find VAEs at the [VAE List](https://rentry.org/sdvae#main-vaes):
 ## Put it all Together
 Here are some general notes and helpful things I learned along the way that do not necessarily fit the chronological flow of this guide.
 
+![](howto.gif)
+
 ### The General SD Process
 A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here](https://github.com/civitai/civitai/wiki/Image-Reproduction). But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
 
@@ -222,6 +224,17 @@ I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=
 * The most promising samplers here seem to be DPM++ SDE or any of the Karras samplers.
 
 ![tanks](xyz_grid-0002-1656460887.jpg)
+
+The exact parameters used (not including the model or sampler) for every one of these tank images are given below (again, taken from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234)):
+
+* Positive prompt: tank, bf2042, Best quality, masterpiece, ultra high res, (photorealistic:1.4), detailed skin, cinematic lighting, cinematic highly detailed, colorful, modern Photograph, a group of soldiers in battlefield, battlefield explosion everywhere, jet fighters and helicopters flying in the sky, two tanks on the ground, In desert area , buildings on fire and one abandoned military armored vehicle in the background
+* Negative prompt: naked, (worst quality:2), (low quality:2), (normal quality:2), lowres, bad anatomy, bad hands, normal quality, ((monochrome)), ((grayscale)), collapsed eyeshadow, multiple eyeblows, pink hair, holes on breasts, ng_deepnegative_v1_75t, nsfw, nipples,extra fingers, ((extra arms)), (extra legs), mutated hands, (fused fingers), (too many fingers), (long neck:1.3)
+* Steps: 22
+* CFG scale: 7.5
+* Seed: 1656460887
+* Size: 480x480
+* Clip skip: 2
+* AddNet Enabled: True, AddNet Module 1: LoRA, AddNet Model 1: ztz99ATank_ztz99ATank(82a1a1085b2b), AddNet Weight A 1: 1, AddNet Weight B 1: 1
 
 # Advanced
 In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the txt2image tab of the WebUI.
