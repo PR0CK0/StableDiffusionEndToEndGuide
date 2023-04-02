@@ -66,6 +66,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [A succint prompting guide](https://rentry.org/sdhypertextbook#syntax)
     * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
     * [Collection of prompts and images](https://rentry.org/54d9o)
+    * [Step-by-Step Anime Girl Prompting Guide](https://lunarmimi.net/freebies/novelai-anime-girl-prompt-guide/)
     * Prompt terms have precedence: earlier terms have more weight
 2. Read up on SD knowledge in general:
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
