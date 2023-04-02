@@ -16,18 +16,24 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 * [Huggingface Image to Image SD Playground](https://huggingface.co/spaces/huggingface-projects/diffuse-the-rest)
 * [Huggingface Inpainting Playground](https://huggingface.co/spaces/fffiloni/stable-diffusion-inpainting)
 
-# Steps I Took
+# Table of Contents
+1. [The Basics](#the-basics)
+    1. [Set up Local GPU usage](#set-up-local-gpu-usage)
+    2. [Going Deeper](#going-deeper)
+    3. [NovelAI Model](#novelai-model)
+    4. [LoRA](#lora)
+    5. [Playing with Models](#playing-with-models)
+    6. [VAEs](#vaes)
+    7. [Put it all Together](#put-it-all-together)
+    8. [Getting Comfortable](#getting-comfortable)
+    9  [Testing](#testing)
+1. [Advanced](#advanced)
+    1. [Making New Stuff](#making-new-stuff)
+
+# The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
 
-## Overview
-1. Set up WebUI
-2. Play with WebUI
-3. NovelAI Model
-4. LoRAs
-5. VAEs
-6. Testing
-
-## Setting up Local GPU Usage (~1 hour)
+## Set up Local GPU Usage
 We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the it setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
 1. Finish the [starting setup guide](https://rentry.org/voldy)
     * I followed this up to step 7, after which it goes into the hentai stuff
@@ -60,8 +66,8 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
     * Etc.
 
-## NovelAI (NAI) Model
-The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
+## NovelAI Model
+The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI (NAI) was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
 
 In any case, it's just really good at generating people and most of the models or LoRAs you will play with merging are compatible with it because they are trained on anime images. Also, humans present a really good starting use case for fine-tuning exactly what LoRAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
 
@@ -78,8 +84,11 @@ In any case, it's just really good at generating people and most of the models o
     * [SDG LoRA Motherload](https://rentry.org/sdg-LoRA-motherload) (NSFW)
     * [Lots of popular models (also the prompting guide from earlier)](https://rentry.org/hdgpromptassist#models) (NSFW)
 
-## Time to get a LoRA going
+## LoRA
 [Low-Rank Adaptation (LoRA)](https://huggingface.co/blog/lora) allows fine-tuning for a given model. In the WebUI, you can add LoRAs to a model like icing on a cake. Training new LoRAs is also pretty easy. There are other, "ancestral" means of fine-tuning (e.g., textual inversion and hypernetworks), but LoRAs are the state-of-the-art.
+
+Here is a LoRA from CivitAI that generates [tanks](https://civitai.com/models/14234/ztz-99a-tank) and another that generates [fighter jets](https://civitai.com/models/6975/fighter-jet-lora). I will use the tank LoRA throughout the guide. Please note that this is not a very good LoRA, as it is meant for anime-style images, but it is fine to play around with.
+
 1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
 2. You should now see an "Additional Networks" section in the UI
 3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
@@ -104,26 +113,34 @@ Building upon the previous section... different models have different training d
 * [AbyssOrangeMix (AOM)](https://rentry.org/sdg-motherload#abyssorangemix-aom-various) - anime, realism, artistic, paintings, extremely common and good for testing
 * [Kotosmix](https://rentry.org/sdg-motherload#kotosmix-v10) - general purpose, realism, anime, scenery, people, DPM++ 2M Karras sampler recommended
 
-[CivitAI](https://CivitAI.com/) was used to get all the others. You need to **make an account** otherwise you will not be able to see NSFW stuff, including weapons and military equipment. 
+[CivitAI](https://CivitAI.com/) was used to get all the others. You need to **make an account** otherwise you will not be able to see NSFW stuff, including weapons and military equipment.  On CivitAI, some models (checkpoints) include VAEs; if it states this, download it as well and place it alongside the model.
 
-* TODO
-* TODO
+* [Protogen x3.4](https://civitai.com/models/3666/protogen-x34-photorealism-official-release) - ultra-realism
+    * Use trigger words: modelshoot style, analog style, mdjrny-v4-style, nousr robot
+* [Dreamlike Photoreal 2.0](https://civitai.com/models/3811/dreamlike-photoreal-20) - ultra-realism
+    * Use trigger word: photorealistic
+* [SPYBG's Toolkit for Digital Artists](https://civitai.com/models/4118/spybgs-toolkit-for-digital-artists) - realism, concept art
+    * Use trigger words: tk-char, tk-env
 
 ## VAEs
 Variable Autoencoders make images look better, crisper, less blown out. Some also fix hands and faces. But it's mostly a saturation and shading thing. Explained [here](https://rentry.org/sdvae) and [here](https://rentry.org/hdgrecipes#vae-preview-images) (NSFW). The NovelAI / Anything VAE is commonly used. It's basically an add-on to your model, just like a LoRA.
-1. Download one from the [VAE guide](https://rentry.org/sdvae#where-do-i-get-vaes-and-which-one-to-use)
-2. Follow [this](https://rentry.org/sdvae#how-do-i-use-a-vae) quick section of the guide to set up VAEs in the WebUI
-    * Make sure to put them in ```stable-diffusion-webui\models\VAE\```
-3. Play around with making images with and without your VAE, to see the differences
 
-## Playing with VAEs
-[VAE List](https://rentry.org/sdvae#main-vaes), used to find all the VAEs.
+Find VAEs at the [VAE List](https://rentry.org/sdvae#main-vaes):
 
 * [NAI / Anything](https://civitai.com/models/66/anything-v3) - for anime models
     * Comes with the NAI model by default when you put it into the models folder
 * [SD 1.5](https://huggingface.co/stabilityai/sd-vae-ft-mse-original/blob/main/vae-ft-mse-840000-ema-pruned.safetensors) - for realistic models
 
-## Putting it all Together (TODO, WIP, NOT DONE)
+1. Download a VAE
+2. Follow [this](https://rentry.org/sdvae#how-do-i-use-a-vae) quick section of the guide to set up VAEs in the WebUI
+    * Make sure to put them in ```stable-diffusion-webui\models\VAE\```
+3. Play around with making images with and without your VAE, to see the differences
+
+## Put it all Together
+TODO
+
+TODO
+
 There is a process you can follow to get good results over and over... this will be refined over time.
 
 1. TODO
@@ -141,7 +158,7 @@ A good way to learn is to browse cool images on CivitAI, open what you like and 
 
 NSFW extension for work
 
-controlnet?
+controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
 
 wildcards?
 prompt languages?
@@ -164,6 +181,8 @@ Some extensions can make using the WebUI better. Get the Github link, go to Exte
 So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination.
 
 A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
+
+# Advanced
 
 ## Making New Stuff
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
