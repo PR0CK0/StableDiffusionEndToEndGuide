@@ -19,6 +19,14 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 # Steps I Took
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
 
+## Overview
+1. Set up WebUI
+2. Play with WebUI
+3. NovelAI Model
+4. LoRAs
+5. VAEs
+6. Testing
+
 ## Setting up Local GPU Usage (~1 hour)
 We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the it setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
 1. Finish the [starting setup guide](https://rentry.org/voldy)
@@ -59,7 +67,7 @@ In any case, it's just really good at generating people and most of the models o
 
 1. Follow the [NovelAI Speedrun Guide](https://rentry.org/nai-speedrun)
     * You'll need to Torrent the leaked model or find it elsewhere
-2. Once you get the files into the folder for the WebUI and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
+2. Once you get the files into the folder for the WebUI, ```stable-diffusion-webui\models\Stable-diffusion```, and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
     * If you have trouble here, copy the config.yaml file from the folder where the model was and follow the same naming scheme (like in this [guide](https://rentry.org/voldy#-novelai-setup-))
 3. Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
 4. Find new SD models and LoRAs
@@ -69,12 +77,14 @@ In any case, it's just really good at generating people and most of the models o
     * [SDG Model Motherload](https://rentry.org/sdg-motherload) (NSFW)
     * [SDG LoRA Motherload](https://rentry.org/sdg-LoRA-motherload) (NSFW)
     * [Lots of popular models (also the prompting guide from earlier)](https://rentry.org/hdgpromptassist#models) (NSFW)
-5. Time to get a LoRA going
-    1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
-    2. You should now see an "Additional Networks" section in the UI
-    3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
-    4. Select and go
-        * Just know that any LoRA you download probably has info describing how to use it... like "use the keyword tank" or something; make sure wherever you download it from (e.g., CivitAI), you read its description
+
+## Time to get a LoRA going
+[Low-Rank Adaptation (LoRA)](https://huggingface.co/blog/lora) allows fine-tuning for a given model. In the WebUI, you can add LoRAs to a model like icing on a cake. Training new LoRAs is also pretty easy. There are other, "ancestral" means of fine-tuning (e.g., textual inversion and hypernetworks), but LoRAs are the state-of-the-art.
+1. Follow this [quick guide](https://rentry.org/hdgpromptassist#how-to-use-a-lora) to install the extension
+2. You should now see an "Additional Networks" section in the UI
+3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
+4. Select and go
+    * Just know that any LoRA you download probably has info describing how to use it... like "use the keyword tank" or something; make sure wherever you download it from (e.g., CivitAI), you read its description
 
 ![2](2.PNG)
 
@@ -128,6 +138,28 @@ To work from an SD-generated image that already exists (maybe someone sent it to
     * Works because PNGs can store metadata
 
 A good way to learn is to browse cool images on CivitAI, open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here]. But you can generally get pretty close.
+
+NSFW extension for work
+
+controlnet?
+
+wildcards?
+prompt languages?
+prompt substep inputs (image on phone)?
+
+chatgpt integration?
+
+I got a few errors now and again. Mostly out of memory (VRAM) errors that were fixed by lowering values on some parameters. One error that plagued me was a NaN error, something to the effect of "a VAE produced a NaN something", so to stop this, I added the parameter ```--disable-nan-check``` to the ```stable-diffusion-webui\webui-user.bat``` file, on the line ```set COMMANDLINE_ARGS=```.
+
+## Getting Comfortable
+Some extensions can make using the WebUI better. Get the Github link, go to Extensions tab, install from URL; optionally, in the Extensions Tab, click Available, then Load From and you can browse extensions locally.
+* [Tag Completer](https://github.com/DominikDoom/a1111-sd-webui-tagcomplete) - Recommends and auto-completes booru tags as you type
+* [Stable Diffusion Web UI State](https://github.com/ilian6806/stable-diffusion-webui-state) - Preserves the UI state even after restarting
+
+## Testing
+So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination.
+
+A really good resource on SD comparisons can be found [here](https://github.com/ilian6806/stable-diffusion-webui-state) (NSFW). There are lots of links to follow. You can begin to form an understanding on how the various models, VAEs, LoRAs, parameter values and so on affect image generation.
 
 ## Making New Stuff
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
