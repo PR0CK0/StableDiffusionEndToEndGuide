@@ -4,7 +4,7 @@ I became interested in using SD to generate images for military applications. Mo
 Anyhow, the techniques from these weirdos are applicable to a variety of applications, most specifically LoRAs, which are like model fine-tuners. The idea is to work with specific LoRAs (e.g., military vehicles, aircraft, weapons, etc.) to generate synthetic image data for training vision models. Training new, useful LoRAs is also of interest. Later stuff may include inpainting for perturbation.
 
 ## Disclaimer
-```Every link here may contain NSFW content, as most of the cutting-edge work on SD and LoRAs is with porn or hentai. So, please be wary when you are working with these resources. ```
+```Every link here may contain NSFW content, as most of the cutting-edge work on SD and LoRAs is with porn or hentai. So, please be wary when you are working with these resources.```
 
 -TP
 
@@ -45,6 +45,9 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
+
+## On Rentry
+```Rentry.org pages are the main resources linked to in this guide. If any of the rentry pages do not work, change the .org to .co and the link should work. Otherwise, use the Wayback machine.```
 
 ## Set up Local GPU Usage
 We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the it setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
@@ -272,7 +275,7 @@ Also known as prompt blending. Prompt editing allows you to have the model chang
 ![](prompt_editing.png)
 
 ## Xformers
-[Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation (measured in it/s) on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
+[Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation (measured in seconds/iteration, or s/it) on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
 
 ## img2img
 Not exactly used much, sort of a confusing tab. Can be used to generate images given sketches, like in the [Huggingface Image to Image SD Playground](https://huggingface.co/spaces/huggingface-projects/diffuse-the-rest). This tab has a sub-tab, inpainting, which is the subject of the next section and a very important capability of the WebUI. While you can use this section to generate altered images given one you already made (output to ```stable-diffusion-webui\outputs\img2img-images```), the functionality is spotty to me... it seems to use an insane amount of memory and I can barely get it to work. Go to the next section below.
@@ -325,6 +328,9 @@ The best way to understand what a ControlNet does is like saying "inpainting on 
 This is all well and good, but sometimes you need better models or LoRAs for professional use cases. Because most of the SD content is literally meant for generating women or porn, specific models and LoRAs may need to be trained.
 * Browse every topic of interest [here](https://rentry.org/rentrysd)
   * [Training LoRAs](https://rentry.org/ezlora)
+  * [LoRA train](https://rentry.org/lora_train)
+  * [Lazy LoRA training guide](https://rentry.org/LazyTrainingGuide)
+  * [Another LoRA training guide](https://rentry.org/59xed3)
   * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
   * [Merging models](https://rentry.org/hdgrecipes)
   * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
@@ -340,9 +346,25 @@ The checkpoint merger tab in the WebUI lets you combine two models together, lik
 Training a LoRA is not necessarily hard, it's just a matter of gathering enough data.
 
 # Google Colab Setup
-**TODO**
-
 This is an important step if you have to work away from your rig. Google Colab Pro is 10 dollars a month and gives you 89 GB of RAM and access to good GPUs, so you can technically run prompts from your phone and have them work for you on a server in Timbuktu. If you don't mind a bit of extra cost, Google Colab Pro+ is 50 dollars a month and is even better.
+
+1. Go to [this](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast_stable_diffusion_AUTOMATIC1111.ipynb) pre-built SD Colab
+2. You can clone it to your GDrive or just use it as it sits so it's always the most up-to-date from the Github
+3. Run the first 4 code blocks (takes a bit)
+4. Skip the ControlNet code block
+5. Run 'Start Stable-Diffusion' (takes a bit)
+    * Put username/password if you want to (probably a good idea as Gradio is public)
+6. Click the Gradio link ('running on public URL')
+7. Use the WebUI like normal
+    * Send the link to your phone and you can generate images on-the-go
+8. To add new models and LoRAs, you should have new folders in your Google Drive: ```gdrive/MyDrive/sd/stable-diffusion-webui```, and from this base folder you can use the same folder structure stuff you've been doing in the local WebUI
+    * Do the LoRA extension installation like [earlier](#lora) and the folder structure will auto-populate just like on desktop
+9. Now every time you want to use it, you just have to run the 'Start Stable-Diffusion' code block (none of the other stuff), get a gradio link and you're done
+
+Google Colab is always free and you can use it forever, but it can be a little slow.  Upgrading to Colab Pro for $10/month gives you some more [power](https://colab.research.google.com/notebooks/pro.ipynb). But Colab Pro+ for $50/month is where the fun really is. Pro+ lets you run your code for 24 hours even after you close the tab.
+
+**TODO**
+I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
 
 # Junkyard
 Stuff I don't know much about but need to look into
