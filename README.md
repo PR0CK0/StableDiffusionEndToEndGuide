@@ -26,9 +26,10 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     6. [VAEs](#vaes)
     7. [Put it all Together](#put-it-all-together)
         1. [The General SD Process](#the-general-sd-process)
-        2. [txt2img Settings](#txt2img-settings)
-        3. [Regenerating a Previously-Generated Image](#regenerating-a-previously-generated-image)
-        4. [Troubleshooting Errors](#troubleshooting-errors)
+        2. [Saving Prompts](#saving-prompts)
+        3. [txt2img Settings](#txt2img-settings)
+        4. [Regenerating a Previously-Generated Image](#regenerating-a-previously-generated-image)
+        5. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
 2. [Advanced](#advanced) (WIP)
@@ -122,6 +123,7 @@ I will use the tank LoRA throughout the guide. Please note that this is not a ve
 2. You should now see an "Additional Networks" section in the UI
 3. Put your LoRAs into ```stable-diffusion-webui\extensions\sd-webui-additional-networks\models\lora```
 4. Select and go
+    * MAKE SURE YOU CHECK 'ENABLE'
     * Just know that any LoRA you download probably has info describing how to use it... like "use the keyword tank" or something; make sure wherever you download it from (e.g., CivitAI), you read its description
 
 ![2](2.PNG)
@@ -183,10 +185,18 @@ The general process for a WebUI workflow is:
 * [inpainting](https://rentry.org/sdhypertextbook#inpainting) - edit parts of images (will discuss later)
 * [extra](https://rentry.org/sdhypertextbook#extra) - final image edits (will discuss later)
 
+### Saving Prompts
+Sometimes you want to go back to prompts without pasting in images or writing them from scratch. You can save prompts to re-use them in the WebUI.
+
+1. Write a positive and/or negative prompt
+2. Under the Generate button, click the button on the right to save your "style"
+3. Enter a name and save
+4. Select it anytime by clicking the Styles drop-down
+
 ### txt2img Settings
 This section is more or less a digest of [this](https://rentry.org/sdhypertextbook#txt2img) guide's information.
 * More sampling steps generally means more accuracy (except for "a" samplers, like Euler a, that change every so often)
-* Restore faces can be done in the Extras tab after generation
+* Play with this on and off; generally, when on, it really makes faces look good
 * Highres. fix is good for images above 512x512; useful if there is more than one person in an image
 * CFG is best at low-middle values, like 5-10
 
@@ -287,7 +297,29 @@ This is where the power lies for the content creator or someone interested in im
 This WebUI tab is specifically for upscaling. If you get an image you really like, you can upscale it here at the end of your workflow. Upscaled images are stored in ```stable-diffusion-webui\outputs\extras-images```. Some of the memory issues associated with upscaling with more powerful upscalers during generation in the txt2img tab (e.g., the 4x+ ones) do not happen here because you are not generating new images, you are only upscaling static ones.
 
 ## ControlNets
-TODO
+The best way to understand what a ControlNet does is like saying "inpainting on steroids". You give it an input image (SD-generated or not) and it can modify the entire thing. Also possible with ControlNets are poses. You can give a reference pose for a person and generate corresponding images given your typical prompt. A good start to understand ControlNets is [here](https://www.youtube.com/watch?v=dLM2Gz7GR44).
+
+1. Install the ControlNet extension, [sd-webui-controlnet](https://github.com/Mikubill/sd-webui-controlnet) in the WebUI
+    * Make sure to reload the UI, by clicking the Reload UI button in the settings tab
+2. Verify that the ControlNet button is now in the txt2img (and img2img) tab, below Additional Networks (where you put your LoRAs)
+3. Activate multi ControlNet models: Settings -> ControlNet -> Mutli ControlNet slider -> 2+
+    * Reload the UI and in the ControlNet area you should see multiple model tabs
+    * You can combine ControlNets (e.g., Canny and OpenPose) just like using multiple LoRAs
+4. Get a [ControlNet model](https://huggingface.co/webui/ControlNet-modules-safetensors/tree/main)
+    * The Canny models are edge-detection models; images are converted into black-and-white edge images, where the edges tell SD, roughly, what your image will look like
+    * The OpenPose models take an image of a person and convert it to a pose model to use in later images
+    * There are a lot of other models that can be investigated there as well
+5. Let's grab the [Canny](https://huggingface.co/webui/ControlNet-modules-safetensors/blob/main/control_canny-fp16.safetensors) and [OpenPose](https://huggingface.co/webui/ControlNet-modules-safetensors/blob/main/control_openpose-fp16.safetensors) models
+6. Put them into ```stable-diffusion-webui\extensions\sd-webui-controlnet\models```
+7. Get any image of interest to you, or generate a new one; here, I will use this tank image I generated earlier 
+![](00381-2353583286.png)
+8. Settings in txt2img: sampling method "DDIM", sampling steps 20, width/height same as your selected image
+9. Settings in the ControlNet tab: check Enable, Preprocessor "Canny", Model "control_canny-fp16", canvas width/height same as your selected image (all other settings default)
+10. Modify your prompts and click generate; I tried to convert my tank image to one on Mars
+![](00004-3597592437.png)
+    * Positive prompt was: a scene on mars, outerspace, space, universe, ((galaxy space background)), stars, moonbase, futuristic, black background, dark background, stars in sky, (night time) red sand, ((stars in the background)), tank, bf2042, Best quality, masterpiece, ultra high res, (photorealistic:1.4), detailed skin, cinematic lighting, cinematic highly detailed, colorful, modern Photograph, a group of soldiers in battlefield, battlefield explosion everywhere, jet fighters and helicopters flying in the sky, two tanks on the ground, In desert area , buildings on fire and one abandoned military armored vehicle in the background, tree, forest, sky
+11. Go grab an image with people in it and you can do both the Canny model in Control Model - 0 and the OpenPose model in Control Model - 1 to really have fun with it
+12. Again, watch [this](https://www.youtube.com/watch?v=dLM2Gz7GR44) video to really go into depth with Canny and OpenPose
 
 ## Making New Stuff
 This is all well and good, but sometimes you need better models or LoRAs for professional use cases. Because most of the SD content is literally meant for generating women or porn, specific models and LoRAs may need to be trained.
@@ -320,8 +352,5 @@ There is a process you can follow to get good results over and over... this will
 1. TODO
 2. Highres fix, [here](https://rentry.org/hiresfixjan23)
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
-
-
-controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
 
 chatgpt integration?
