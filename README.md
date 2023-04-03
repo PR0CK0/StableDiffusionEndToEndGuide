@@ -36,7 +36,8 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     2. [Img2Img](#img2img)
     3. [Inpainting](#inpainting)
     4. [Extras](#checkpoint-merger)
-    5. [Making New Stuff](#making-new-stuff)
+    5. [ControlNets](#controlnets)
+    6. [Making New Stuff](#making-new-stuff)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
@@ -284,6 +285,9 @@ This is where the power lies for the content creator or someone interested in im
 
 ## Extras
 This WebUI tab is specifically for upscaling. If you get an image you really like, you can upscale it here at the end of your workflow. Upscaled images are stored in ```stable-diffusion-webui\outputs\extras-images```. Some of the memory issues associated with upscaling with more powerful upscalers during generation in the txt2img tab (e.g., the 4x+ ones) do not happen here because you are not generating new images, you are only upscaling static ones.
+
+## ControlNets
+TODO
 
 ## Making New Stuff
 This is all well and good, but sometimes you need better models or LoRAs for professional use cases. Because most of the SD content is literally meant for generating women or porn, specific models and LoRAs may need to be trained.
