@@ -81,7 +81,13 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * Did you know that as of March 2023, a 1.7B parameter text-to-video diffusion model is available?
 5. Mess around in the WebUI, play with different models, settings, etc.
     * Play with keywords like () and [] (increase and decrease emphasis, respectively)
-    * Etc.
+        * () = x1.05 modifier
+        * [] = /1.05 modifier
+        * (word:1.05) == (word)
+        * (word:1.1025) == ((word))
+        * (word:.952) == [word]
+        * (word:.907) == [[word]]
+        * Etc.
 
 ## NovelAI Model
 The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI (NAI) was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
@@ -215,6 +221,7 @@ Some extensions can make using the WebUI better. Get the Github link, go to Exte
 * [Test My Prompt](https://github.com/Extraltodeus/test_my_prompt) - a script that you can run to remove individual words from your prompt to see how it affects image generation
 * [Model-Keyword](https://github.com/mix1009/model-keyword) - autofills keywords associated with some models and LoRAs, pretty well-maintained and up-to-date as of Apr. 2023
 * [NSFW Checker](https://github.com/AUTOMATIC1111/stable-diffusion-webui-nsfw-censor) - blacks out NSFW images; useful if you are working in an office, as a lot of good models allow NSFW content and you may not want to see that at work
+    * BE AWARE: this extension can mess up inpainting or even generation by blacking out NSFW images (not temporally, it literally outputs a black image instead), so make sure to turn it off as needed
 * [Gelbooru Prompt](https://github.com/antis0007/sd-webui-gelbooru-prompt) - pulls tags and creates an automatic-prompt from any Gelbooru image using its hash
 * [booru2prompt](https://github.com/Malisius/booru2prompt) - similar to Gelbooru Prompt but a bit more functionality
 * [Dynamic Prompting](https://github.com/adieyal/sd-dynamic-prompts) - a template language for prompt generation that allows you to run random or combinatorial prompts to generate various images (uses wildcards)
@@ -260,13 +267,20 @@ Also known as prompt blending. Prompt editing allows you to have the model chang
 Not exactly used much, sort of a confusing tab. Can be used to generate images given sketches, like in the [Huggingface Image to Image SD Playground](https://huggingface.co/spaces/huggingface-projects/diffuse-the-rest). This tab has a sub-tab, inpainting, which is the subject of the next section and a very important capability of the WebUI. While you can use this section to generate altered images given one you already made (output to ```stable-diffusion-webui\outputs\img2img-images```), the functionality is spotty to me... it seems to use an insane amount of memory and I can barely get it to work. Go to the next section below.
 
 ## Inpainting
-TODO
-
 This is where the power lies for the content creator or someone interested in image perturbation. Output is in ```stable-diffusion-webui\outputs\img2img-images\```.
 
 * [Inpainting and outpainting guide](https://rentry.org/drfar)
 * [4chan inpainting](https://rentry.org/inpainting-guide-SD) (NSFW)
 * [Definitive inpainting guide](https://stable-diffusion-art.com/inpainting_basics/)
+
+1. Grab an image you like but that isn't perfect, something is off - it needs to be *tweaked*
+    * Or generate one and click Send to inpaint (all the settings will auto-populate)
+2. You are now in the img2img -> inpaint sub-tab
+3. Draw (with your mouse) on the image the exact spot you want to change
+4. Set mask mode to "inpaint masked", masked content to "original" and inpaint area to "only masked"
+5. In the prompt area up above, write the new prompt to tweak that spot in the image; do a negative prompt if you'd like
+6. Generate an image (ideally, do a batch of 4 or so)
+7. Whichever one you like, click Send to inpaint and iterate until you have a finished image
 
 ## Extras
 This WebUI tab is specifically for upscaling. If you get an image you really like, you can upscale it here at the end of your workflow. Upscaled images are stored in ```stable-diffusion-webui\outputs\extras-images```. Some of the memory issues associated with upscaling with more powerful upscalers during generation in the txt2img tab (e.g., the 4x+ ones) do not happen here because you are not generating new images, you are only upscaling static ones.
