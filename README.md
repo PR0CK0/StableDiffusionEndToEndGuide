@@ -62,7 +62,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     2. Paste into browser and voila; try a prompt and you're off to the races
     3. Images will be saved automatically when generated to ```stable-diffusion-webui\outputs\txt2img-images\<date>```
 
-![1](1.PNG)
+![1](resources/1.PNG)
 
 ## Going Deeper
 
@@ -129,7 +129,7 @@ I will use the tank LoRA throughout the guide. Please note that this is not a ve
     * MAKE SURE YOU CHECK 'ENABLE'
     * Just know that any LoRA you download probably has info describing how to use it... like "use the keyword tank" or something; make sure wherever you download it from (e.g., CivitAI), you read its description
 
-![2](2.PNG)
+![2](resources/2.PNG)
 
 ## Playing with Models
 Building upon the previous section... different models have different training data and training keywords... so using booru tags on some models doesn't work very well. Below are some of the models I played with and the "instructions" for them.
@@ -174,7 +174,7 @@ Find VAEs at the [VAE List](https://rentry.org/sdvae#main-vaes):
 ## Put it all Together
 Here are some general notes and helpful things I learned along the way that do not necessarily fit the chronological flow of this guide.
 
-![](howto.gif)
+![](resources/howto.gif)
 
 ### The General SD Process
 A good way to learn is to browse cool images on CivitAI, AIbooru or other SD sites (4chan, Reddit, etc.), open what you like and copy the generation parameters into the WebUI. Full disclosure: recreating an image exactly is not always possible, as described [here](https://github.com/civitai/civitai/wiki/Image-Reproduction). But you can generally get pretty close. To really play around, turn the CFG low so the model can get more creative. Try batches and walk away from the computer to come back to lots to pick through.
@@ -253,7 +253,7 @@ I adopted a test prompt from [here](https://civitai.com/gallery/261297?reviewId=
 * In later independent tests, it was found that the Protogen X34 Photorealism and SpyBGs Toolkit were both pretty good at tanks too.
 * The most promising samplers here seem to be DPM++ SDE or any of the Karras samplers.
 
-![tanks](xyz_grid-0002-1656460887.jpg)
+![tanks](resources/xyz_grid-0002-1656460887.jpg)
 
 The exact parameters used (not including the model or sampler) for every one of these tank images are given below (again, taken from [here](https://civitai.com/gallery/261297?reviewId=43595&infinite=false&returnUrl=%2Fmodels%2F14234)):
 
@@ -272,7 +272,7 @@ In this section are the more advanced things you can do once you get a good fami
 ## Prompt Editing
 Also known as prompt blending. Prompt editing allows you to have the model change its prompt on specified steps. The below image was taken from a 4chan post and describes the technique. For instance, as stated in this [guide](https://stable-diffusion-art.com/prompt-guide/), prompt editing can be used to blend faces.
 
-![](prompt_editing.png)
+![](resources/prompt_editing.png)
 
 ## Xformers
 [Xformers](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Xformers), or cross-attention layers. A way to speed up image generation (measured in seconds/iteration, or s/it) on Nvidia GPUs, lowers VRAM usage but causes [non-determinism](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2705#discussioncomment-4024378). Only consider this if you have a powerful GPU; realistically you need a Quadro.
@@ -315,11 +315,11 @@ The best way to understand what a ControlNet does is like saying "inpainting on 
 5. Let's grab the [Canny](https://huggingface.co/webui/ControlNet-modules-safetensors/blob/main/control_canny-fp16.safetensors) and [OpenPose](https://huggingface.co/webui/ControlNet-modules-safetensors/blob/main/control_openpose-fp16.safetensors) models
 6. Put them into ```stable-diffusion-webui\extensions\sd-webui-controlnet\models```
 7. Get any image of interest to you, or generate a new one; here, I will use this tank image I generated earlier 
-![](00381-2353583286.png)
+![](resources/00381-2353583286.png)
 8. Settings in txt2img: sampling method "DDIM", sampling steps 20, width/height same as your selected image
 9. Settings in the ControlNet tab: check Enable, Preprocessor "Canny", Model "control_canny-fp16", canvas width/height same as your selected image (all other settings default)
 10. Modify your prompts and click generate; I tried to convert my tank image to one on Mars
-![](00004-3597592437.png)
+![](resources/00004-3597592437.png)
     * Positive prompt was: a scene on mars, outerspace, space, universe, ((galaxy space background)), stars, moonbase, futuristic, black background, dark background, stars in sky, (night time) red sand, ((stars in the background)), tank, bf2042, Best quality, masterpiece, ultra high res, (photorealistic:1.4), detailed skin, cinematic lighting, cinematic highly detailed, colorful, modern Photograph, a group of soldiers in battlefield, battlefield explosion everywhere, jet fighters and helicopters flying in the sky, two tanks on the ground, In desert area , buildings on fire and one abandoned military armored vehicle in the background, tree, forest, sky
 11. Go grab an image with people in it and you can do both the Canny model in Control Model - 0 and the OpenPose model in Control Model - 1 to really have fun with it
 12. Again, watch [this](https://www.youtube.com/watch?v=dLM2Gz7GR44) video to really go into depth with Canny and OpenPose
