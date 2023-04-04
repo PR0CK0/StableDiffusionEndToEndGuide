@@ -20,6 +20,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 1. [The Basics](#the-basics)
     1. [Set up Local GPU usage](#set-up-local-gpu-usage)
     2. [Going Deeper](#going-deeper)
+        1. [Prompting](#prompting)
     3. [NovelAI Model](#novelai-model)
     4. [LoRA](#lora)
     5. [Playing with Models](#playing-with-models)
@@ -88,14 +89,25 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 4. Keep up to date with Stable Diffsion [news](https://rentry.org/sdupdates3)
     * Did you know that as of March 2023, a 1.7B parameter text-to-video diffusion model is available?
 5. Mess around in the WebUI, play with different models, settings, etc.
-    * Play with keywords like () and [] (increase and decrease emphasis, respectively)
-        * () = x1.05 modifier
-        * [] = /1.05 modifier
-        * (word:1.05) == (word)
-        * (word:1.1025) == ((word))
-        * (word:.952) == [word]
-        * (word:.907) == [[word]]
-        * Etc.
+
+### Prompting
+The order of words in a prompt has an effect: earlier words take precedence. The general structure of a good prompt, from [here](https://rentry.org/sdhypertextbook#syntax):
+
+```<general positives> <descriptors of subject> <descriptors of background> <post-processing, camera, etc.>```
+
+And another good [guide](https://stable-diffusion-art.com/prompt-guide/) says the prompt should follow this structure:
+
+```<subject> <medium> <style> <artist> <website> <resolution> <additional details> <color> <lighting> ```
+
+Whatever you prompt, try to follow some sort of structure so your process is replicable. Below are the necessary prompt syntax elements:
+* () = x1.05 modifier
+* [] = /1.05 modifier
+* (word:1.05) == (word)
+* (word:1.1025) == ((word))
+* (word:.952) == [word]
+* (word:.907) == [[word]]
+* The AND keyword allows you to prompt two separate prompts at once to merge them; good so things don't get smashed together in latent space
+    * E.g., ```1girl standing on grass in front of castle AND castle in background```
 
 ## NovelAI Model
 The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI (NAI) was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
