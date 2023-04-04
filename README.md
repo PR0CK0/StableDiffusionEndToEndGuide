@@ -43,6 +43,8 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         2. [Training LoRAs](#training-loras)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
 4. [Midjourney](#midjourney) (WIP)
+        1. [MJ Parameters](#mj-parameters)
+        2. [MJ Advanced Prompts](#mj-advanced-prompts)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -368,11 +370,36 @@ Google Colab is always free and you can use it forever, but it can be a little s
 I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
 
 # Midjourney
-TODO
+You can use it for free in the MJ Discord or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
 
-Lots of power with MJ... 
+```/imagine <optional image prompt> <prompt> --parameters```
 
-[Tilable image checker](https://www.pycheung.com/checker/)
+## MJ Parameters
+These are for MJ V4, mostly the same for MJ 5. All models are described [here](https://docs.midjourney.com/docs/models).
+* --ar 1.2-2.1: aspect ratio, default is 1:1
+* --chaos 0-100: variation in, default is 0
+* --no plants: removes plants
+* --q 0.0-2.0: rendering quality time, default is 1
+* --seed: the seed
+* --stop 10-100: stop job partway to generate a blurrier image
+* --style 4a/4b/4c: style of MJ 4'
+* --stylize 0-1000: how strongly MJ's aesthetic runs free, default is 100
+* --uplight: use a "light" upscaler, image is less detailed
+* --upbeta: use a beta upscaler, closer to original image
+* --upanime: upscaler for anime images
+* --niji: alternative model for anime images
+* --hd: use an earlier model that produces larger images, good for abstracts and landscapes
+* --test: use the special MJ test model
+* --testp: use the special MJ photography-focused test model
+* --tile: for MJ 5 only, generates a repeating image
+    * [Tilable image checker](https://www.pycheung.com/checker/)
+* --v 1/2/3/4/5: which MJ version to use (5 is best)
+
+## MJ Advanced Prompts
+* You can inject an image (or images) into the beginning of a prompt to influence its style and colors. See this [doc](https://docs.midjourney.com/docs/image-prompts). Upload an image to your Discord server and right-click to get the link.
+* Remixing lets you make variations of an image, changing models, subjects or medium. See this [doc](https://docs.midjourney.com/docs/remix).
+* Multi prompts lets MJ consider two or more separate concepts individually. MJ versions 1-4 and niji only. For instance, "hot dog" will make images of the food, "hot:: dog" will make images of a warm canine. You can add weights to prompts too; for instance, "hot::2 dog" will make images of dogs on fire. MJ 1/2/3 accepts integer weights, MJ 4 can accept decimals. See this [doc](https://docs.midjourney.com/docs/multi-prompts).
+* Blending lets you upload 2-5 images to merge them into a new image. The /blend command is described [here](https://docs.midjourney.com/docs/blend).
 
 # Junkyard
 Stuff I don't know much about but need to look into
