@@ -42,6 +42,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
+4. [Midjourney](#midjourney) (WIP)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -365,6 +366,13 @@ Google Colab is always free and you can use it forever, but it can be a little s
 
 **TODO**
 I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
+
+# Midjourney
+TODO
+
+Lots of power with MJ... 
+
+[Tilable image checker](https://www.pycheung.com/checker/)
 
 # Junkyard
 Stuff I don't know much about but need to look into
