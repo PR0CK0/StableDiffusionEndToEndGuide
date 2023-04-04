@@ -375,7 +375,4 @@ There is a process you can follow to get good results over and over... this will
 2. Highres fix, [here](https://rentry.org/hiresfixjan23)
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
-
-controlnet? [here](https://civitai.com/models/9251/controlnet-pre-trained-models)
-
 chatgpt integration?
