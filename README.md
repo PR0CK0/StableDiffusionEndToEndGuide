@@ -376,3 +376,9 @@ There is a process you can follow to get good results over and over... this will
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
 chatgpt integration?
+
+outpainting
+
+compviz
+
+midjourney
