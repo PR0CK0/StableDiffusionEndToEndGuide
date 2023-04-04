@@ -415,5 +415,3 @@ chatgpt integration?
 outpainting
 
 compviz
-
-midjourney
