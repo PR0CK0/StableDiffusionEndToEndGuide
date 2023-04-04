@@ -42,9 +42,9 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
-4. [Midjourney](#midjourney) (WIP)
-        1. [MJ Parameters](#mj-parameters)
-        2. [MJ Advanced Prompts](#mj-advanced-prompts)
+4. [Midjourney](#midjourney)
+    1. [MJ Parameters](#mj-parameters)
+    2. [MJ Advanced Prompts](#mj-advanced-prompts)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -370,7 +370,7 @@ Google Colab is always free and you can use it forever, but it can be a little s
 I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
 
 # Midjourney
-You can use it for free in the MJ Discord or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
+MJ is really good for artists. It is not AT ALL as extensible or powerful as SD in the WebUI, but you can generate some pretty awesome things. You can use it for free in the MJ Discord for a few prompts or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
 
 ```/imagine <optional image prompt> <prompt> --parameters```
 
