@@ -77,6 +77,8 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Collection of prompts and images](https://rentry.org/54d9o)
     * [Step-by-Step Anime Girl Prompting Guide](https://lunarmimi.net/freebies/novelai-anime-girl-prompt-guide/)
 2. Read up on SD knowledge in general:
+    * [Seminal Stable Diffusion Publication](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf)
+    * [CompVis / Stability AI Github](https://github.com/CompVis)
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd) (incredible 4chan resource)
     * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
