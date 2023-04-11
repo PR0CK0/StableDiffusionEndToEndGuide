@@ -112,7 +112,7 @@ Whatever you prompt, try to follow some sort of structure so your process is rep
     * E.g., ```1girl standing on grass in front of castle AND castle in background```
 
 ## NovelAI Model
-The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI (NAI) was an anime-focused SD content generation service and its main model was leaked. Most of the incredibly realistic images of SD-generated men and women you see (NSFW or not) come from this leaked model. 
+The default model is pretty neat but, as is usually the case in history, sex drives most things. NovelAI (NAI) was an anime-focused SD content generation service and its main model was leaked. Most of the SD-generated images of anime men and women you see (NSFW or not) come from this leaked model. 
 
 In any case, it's just really good at generating people and most of the models or LoRAs you will play with merging are compatible with it because they are trained on anime images. Also, humans present a really good starting use case for fine-tuning exactly what LoRAs you want to use for professional purposes. You will be troubleshooting a lot and most of the guides out there are for images of women. Later we will get into  variable auto-encoders (VAEs), which brings true realism to the model.
 
@@ -120,7 +120,7 @@ In any case, it's just really good at generating people and most of the models o
     * You'll need to Torrent the leaked model or find it elsewhere
 2. Once you get the files into the folder for the WebUI, ```stable-diffusion-webui\models\Stable-diffusion```, and select the model there, you should have to wait a few minutes while the CLI loads the VAE weights
     * If you have trouble here, copy the config.yaml file from the folder where the model was and follow the same naming scheme (like in this [guide](https://rentry.org/voldy#-novelai-setup-))
-3. Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
+3. This is important... Recreate the Asuka image exactly, referring to the [troubleshooting guide](https://imgur.com/a/DCYJCSX) if it does not match
 4. Find new SD models and LoRAs
     * [CivitAI](https://CivitAI.com/)
     * [Huggingface](https://huggingface.co/models?other=stable-diffusion)
