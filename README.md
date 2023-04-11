@@ -55,7 +55,7 @@ It's somewhat daunting to get into this... but 4channers have done a good job ma
 ```Rentry.org pages are the main resources linked to in this guide. If any of the rentry pages do not work, change the .org to .co and the link should work. Otherwise, use the Wayback machine.```
 
 ## Set up Local GPU Usage
-We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the it setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
+We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the WebUI setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
 1. Finish the [starting setup guide](https://rentry.org/voldy)
     * I followed this up to step 7, after which it goes into the hentai stuff
     * Step 3 takes 15-45 minutes on average Internet speed, as the models are 5+ GB each
