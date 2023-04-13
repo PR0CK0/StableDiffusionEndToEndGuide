@@ -43,10 +43,12 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     7. [Making New Stuff](#making-new-stuff)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
+        3. [Training New Models](#training-new-models)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
 4. [Midjourney](#midjourney)
     1. [MJ Parameters](#mj-parameters)
     2. [MJ Advanced Prompts](#mj-advanced-prompts)
+5. [DreamBooth](#dreambooth)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -79,7 +81,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     * [Step-by-Step Anime Girl Prompting Guide](https://lunarmimi.net/freebies/novelai-anime-girl-prompt-guide/)
 2. Read up on SD knowledge in general:
     * [Seminal Stable Diffusion Publication](https://openaccess.thecvf.com/content/CVPR2022/papers/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.pdf)
-    * [CompVis / Stability AI Github](https://github.com/CompVis)
+    * [CompVis / Stability AI Github](https://github.com/CompVis) (home of the original SD models)
     * [Stable Diffusion Compendium](https://www.sdcompendium.com/doku.php?id=start) (good outside resource)
     * [Stable Diffusion Links Hub](https://rentry.org/rentrysd) (incredible 4chan resource)
     * [Stable Diffusion Goldmine](https://rentry.org/sdgoldmine#prompt-database)
@@ -313,6 +315,12 @@ This is where the power lies for the content creator or someone interested in im
 6. Generate an image (ideally, do a batch of 4 or so)
 7. Whichever one you like, click Send to inpaint and iterate until you have a finished image
 
+## Outpainting
+Outpainting is a rather complex semantic process. Outpainting lets you take an image and expand it as many times as you would like, essentially growing the borders of it. The process is described [here](https://rentry.org/drfar#outpainting). You expand the image only 64 pixels at a time. There are two UI tools for this (that I could find):
+
+* [Alpha Canvas](https://github.com/TKoestlerx/sdexperiments) (built into WebUI as an extension/script)
+* [Hua](https://github.com/BlinkDL/Hua) (web-app for inpainting/outpainting)
+
 ## Extras
 This WebUI tab is specifically for upscaling. If you get an image you really like, you can upscale it here at the end of your workflow. Upscaled images are stored in ```stable-diffusion-webui\outputs\extras-images```. Some of the memory issues associated with upscaling with more powerful upscalers during generation in the txt2img tab (e.g., the 4x+ ones) do not happen here because you are not generating new images, you are only upscaling static ones.
 
@@ -352,6 +360,11 @@ This is all well and good, but sometimes you need better models or LoRAs for pro
   * [Merging models](https://rentry.org/hdgrecipes)
   * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
 
+### Training New Models
+**TODO**
+
+See the section on [DreamBooth](#dreambooth).
+
 ### Checkpoint Merger
 **TODO**
 
@@ -384,7 +397,7 @@ Google Colab is always free and you can use it forever, but it can be a little s
 I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
 
 # Midjourney
-MJ is really good for artists. It is not AT ALL as extensible or powerful as SD in the WebUI, but you can generate some pretty awesome things. You can use it for free in the MJ Discord for a few prompts or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
+MJ is really good for artists. It is not AT ALL as extensible or powerful as SD in the WebUI (NSFW is impossible), but you can generate some pretty awesome things. You can use it for free in the MJ Discord (sign up on their [site](https://www.midjourney.com/)) for a few prompts or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
 
 ```/imagine <optional image prompt> <prompt> --parameters```
 
@@ -415,6 +428,22 @@ These are for MJ V4, mostly the same for MJ 5. All models are described [here](h
 * Multi prompts lets MJ consider two or more separate concepts individually. MJ versions 1-4 and niji only. For instance, "hot dog" will make images of the food, "hot:: dog" will make images of a warm canine. You can add weights to prompts too; for instance, "hot::2 dog" will make images of dogs on fire. MJ 1/2/3 accepts integer weights, MJ 4 can accept decimals. See this [doc](https://docs.midjourney.com/docs/multi-prompts).
 * Blending lets you upload 2-5 images to merge them into a new image. The /blend command is described [here](https://docs.midjourney.com/docs/blend).
 
+# DreamBooth
+**TODO**
+
+[DreamBooth](https://dreambooth.github.io/) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
+* [DreamBooth Easy Tutorial](https://www.youtube.com/watch?v=tuSlUqmlZuc)
+* [DreamBooth 10 Minute Training](https://www.youtube.com/watch?v=usgqmQ0Mq7g)
+
+And some good guides:
+* [Reddit Advanced DreamBooth Advice](https://www.reddit.com/r/StableDiffusion/comments/114dxgl/advanced_advice_for_model_training_finetuning_and/)
+* [Simple DreamBooth](https://rentry.org/simple-db-elinas)
+* [DreamBooth Dump](https://rentry.org/RentrySD/#115-dreambooth) (lots of info, scroll through links)
+
+A Google Colab for DreamBooth:
+* [TheLastBen DreamBooth Training Colab](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast-DreamBooth.ipynb) (same author as the SD Colab described in [Google Colab Setup](#google-colab-setup))
+
+
 # Junkyard
 Stuff I don't know much about but need to look into
 
@@ -427,9 +456,5 @@ There is a process you can follow to get good results over and over... this will
 chatgpt integration?
 
 outpainting
-
-compviz
-
-dreambooth
 
 dall-e 2
