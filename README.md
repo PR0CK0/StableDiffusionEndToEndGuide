@@ -38,17 +38,19 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     2. [Xformers](#xformers)
     3. [Img2Img](#img2img)
     4. [Inpainting](#inpainting)
-    5. [Extras](#checkpoint-merger)
-    6. [ControlNets](#controlnets)
-    7. [Making New Stuff](#making-new-stuff)
+    5. [Outpainting](#outpainting)
+    6. [Extras](#checkpoint-merger)
+    7. [ControlNets](#controlnets)
+    8. [Making New Stuff](#making-new-stuff)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
         3. [Training New Models](#training-new-models)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
-4. [Midjourney](#midjourney)
+4. [DreamBooth](#dreambooth)
+5. [DALL-E](#dall-e)
+6. [Midjourney](#midjourney)
     1. [MJ Parameters](#mj-parameters)
     2. [MJ Advanced Prompts](#mj-advanced-prompts)
-5. [DreamBooth](#dreambooth)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -394,7 +396,23 @@ This is an important step if you have to work away from your rig. Google Colab P
 Google Colab is always free and you can use it forever, but it can be a little slow.  Upgrading to Colab Pro for $10/month gives you some more [power](https://colab.research.google.com/notebooks/pro.ipynb). But Colab Pro+ for $50/month is where the fun really is. Pro+ lets you run your code for 24 hours even after you close the tab.
 
 **TODO**
+
 I do get a weird error that breaks it with my Pro subscription when I set my runtime -> runetime type notebook settings to Premium GPU class and High-RAM. It's because xFormers wasn't built with CUDA support. This could be solved by using TPUs instead or disabling xFormers but I don't have the patience for it right now. Try the Colab's [issues](https://github.com/TheLastBen/fast-stable-diffusion/issues?q=xFormers+cuda).
+
+# DreamBooth
+**TODO**
+
+[DreamBooth](https://dreambooth.github.io/) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
+* [DreamBooth Easy Tutorial](https://www.youtube.com/watch?v=tuSlUqmlZuc)
+* [DreamBooth 10 Minute Training](https://www.youtube.com/watch?v=usgqmQ0Mq7g)
+
+And some good guides:
+* [Reddit Advanced DreamBooth Advice](https://www.reddit.com/r/StableDiffusion/comments/114dxgl/advanced_advice_for_model_training_finetuning_and/)
+* [Simple DreamBooth](https://rentry.org/simple-db-elinas)
+* [DreamBooth Dump](https://rentry.org/RentrySD/#115-dreambooth) (lots of info, scroll through links)
+
+A Google Colab for DreamBooth:
+* [TheLastBen DreamBooth Training Colab](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast-DreamBooth.ipynb) (same author as the SD Colab described in [Google Colab Setup](#google-colab-setup))
 
 # Midjourney
 MJ is really good for artists. It is not AT ALL as extensible or powerful as SD in the WebUI (NSFW is impossible), but you can generate some pretty awesome things. You can use it for free in the MJ Discord (sign up on their [site](https://www.midjourney.com/)) for a few prompts or pay $8/month for the basic plan, whereafter you can use it in your own private server. All the Discord commands can be found [here](https://docs.midjourney.com/docs/command-list) and [here](https://docs.midjourney.com/docs/settings-and-presets). The prompt structure for MJ is:
@@ -428,20 +446,11 @@ These are for MJ V4, mostly the same for MJ 5. All models are described [here](h
 * Multi prompts lets MJ consider two or more separate concepts individually. MJ versions 1-4 and niji only. For instance, "hot dog" will make images of the food, "hot:: dog" will make images of a warm canine. You can add weights to prompts too; for instance, "hot::2 dog" will make images of dogs on fire. MJ 1/2/3 accepts integer weights, MJ 4 can accept decimals. See this [doc](https://docs.midjourney.com/docs/multi-prompts).
 * Blending lets you upload 2-5 images to merge them into a new image. The /blend command is described [here](https://docs.midjourney.com/docs/blend).
 
-# DreamBooth
-**TODO**
+# DALL-E
+DALL-E came out in 2021, DALL-E 2 in 2022, from OpenAI (GPT makers). DALL-E 2 has 4x the resolution as DALL-E 1. It's pretty powerful but extremely limited as you cannot use new models or LoRAs like with SD. It does have a built-in [outpainting](https://labs.openai.com/editor) editor in the web app. It costs $15 for 115 credits, which do not last very long...
 
-[DreamBooth](https://dreambooth.github.io/) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
-* [DreamBooth Easy Tutorial](https://www.youtube.com/watch?v=tuSlUqmlZuc)
-* [DreamBooth 10 Minute Training](https://www.youtube.com/watch?v=usgqmQ0Mq7g)
-
-And some good guides:
-* [Reddit Advanced DreamBooth Advice](https://www.reddit.com/r/StableDiffusion/comments/114dxgl/advanced_advice_for_model_training_finetuning_and/)
-* [Simple DreamBooth](https://rentry.org/simple-db-elinas)
-* [DreamBooth Dump](https://rentry.org/RentrySD/#115-dreambooth) (lots of info, scroll through links)
-
-A Google Colab for DreamBooth:
-* [TheLastBen DreamBooth Training Colab](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast-DreamBooth.ipynb) (same author as the SD Colab described in [Google Colab Setup](#google-colab-setup))
+* [Paid DALL-E 2](https://labs.openai.com/)
+* [Free web version of DALL-E](https://www.craiyon.com/)
 
 
 # Junkyard
@@ -454,7 +463,5 @@ There is a process you can follow to get good results over and over... this will
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
 chatgpt integration?
-
-outpainting
 
 dall-e 2
