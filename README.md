@@ -33,7 +33,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         5. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
-2. [Advanced](#advanced) (WIP)
+2. [Advanced](#advanced)
     1. [Prompt Editing](#prompt-editing)
     2. [Xformers](#xformers)
     3. [Img2Img](#img2img)
@@ -41,7 +41,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     5. [Outpainting](#outpainting)
     6. [Extras](#checkpoint-merger)
     7. [ControlNets](#controlnets)
-    8. [Making New Stuff](#making-new-stuff)
+    8. [Making New Stuff](#making-new-stuff) (WIP)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
         3. [Training New Models](#training-new-models)
@@ -463,5 +463,3 @@ There is a process you can follow to get good results over and over... this will
 3. upscaling, all over but [here](https://rentry.org/hdgfaq) mostly 
 
 chatgpt integration?
-
-dall-e 2
