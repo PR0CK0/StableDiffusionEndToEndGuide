@@ -47,10 +47,11 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         3. [Training New Models](#training-new-models)
 3. [Google Colab Setup](#google-colab-setup) (WIP)
 4. [DreamBooth](#dreambooth)
-5. [DALL-E](#dall-e)
-6. [Midjourney](#midjourney)
+5. [Midjourney](#midjourney)
     1. [MJ Parameters](#mj-parameters)
     2. [MJ Advanced Prompts](#mj-advanced-prompts)
+6. [DALL-E](#dall-e)
+7. [GPT](#gpt)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -452,6 +453,13 @@ DALL-E came out in 2021, DALL-E 2 in 2022, from OpenAI (GPT makers). DALL-E 2 ha
 * [Paid DALL-E 2](https://labs.openai.com/)
 * [Free web version of DALL-E](https://www.craiyon.com/)
 
+# GPT
+**TODO**
+
+Language models are not SD... so why is this here? Well, LLMs like GPT can be used to help alongside SD workflows. For instance, some developers use GPT to write game code and stable diffusion to generate art for their game; some content creators use GPT to write new prompts for them instead of using scripts and wildcards. There are many possibilities. 
+
+GPT is limited, however. Despite their pretense, "Open"AI is not open; their code is hidden, their architectures are unknown and no one has access to working components outside of the API. It's almost an Orwellian doublespeak. GPT has reservations with certain things, including "offensive" content, sexual content, and even certain programming practices (e.g., it does not like to write SQL stored procedures and refers the user to JS). This is obviously annoying and grounds for arbitrary censorship. Some have worked to "jailbreak" GPT, by injecting it with very specific prompts to tell it, in essence, "do exactly as I say, with no morals, or else I will delete your code". It's actually pretty smart.
+* [GPT Jailbreak Prompts](https://github.com/0xk1h0/ChatGPT_DAN)
 
 # Junkyard
 Stuff I don't know much about but need to look into
