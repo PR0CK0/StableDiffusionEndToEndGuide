@@ -357,6 +357,7 @@ This is all well and good, but sometimes you need better models or LoRAs for pro
   * [Training LoRAs](https://rentry.org/ezlora)
   * [LoRA train](https://rentry.org/lora_train)
   * [Lazy LoRA training guide](https://rentry.org/LazyTrainingGuide)
+  * [A Good LoRA training guide from CivitAI](https://civitai.com/models/22530/guide-make-your-own-loras-easy-and-free)
   * [Another LoRA training guide](https://rentry.org/59xed3)
   * [More general LoRA info](https://rentry.org/RentrySD/#1162-lora-guides-and-info)
   * [Merging models](https://rentry.org/hdgrecipes)
