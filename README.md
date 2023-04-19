@@ -17,7 +17,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 * [Huggingface Inpainting Playground](https://huggingface.co/spaces/fffiloni/stable-diffusion-inpainting)
 
 # Table of Contents
-1. [The Basics](#the-basics)
+1. [WebUI Basics](#webui-basics)
     1. [Set up Local GPU usage](#set-up-local-gpu-usage)
     2. [Going Deeper](#going-deeper)
         1. [Prompting](#prompting)
@@ -33,7 +33,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         5. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
-2. [Advanced](#advanced)
+2. [WebUI Advanced](#webui-advanced)
     1. [Prompt Editing](#prompt-editing)
     2. [Xformers](#xformers)
     3. [Img2Img](#img2img)
@@ -49,10 +49,11 @@ What can you actually do with SD? Huggingface and some others have some apps in-
     1. [MJ Parameters](#mj-parameters)
     2. [MJ Advanced Prompts](#mj-advanced-prompts)
 5. [DreamStudio](#dreamstudio) (WIP)
-6. [DreamBooth](#dreambooth) (WIP)
-7. [Video Diffusion](#video-diffusion) (WIP)
+6. [Stable Horde](#stable-horde) (WIP)
+7. [DreamBooth](#dreambooth) (WIP)
+8. [Video Diffusion](#video-diffusion) (WIP)
 
-# The Basics
+# WebUI Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
 
 ## Set up Local GPU Usage
@@ -73,6 +74,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 ## Going Deeper
 
 1. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
+    * [OpenArt Promptbook Guide](https://openart.ai/promptbook)
     * [Definitive SD Prompting Guide](https://stable-diffusion-art.com/prompt-guide/) 
     * [A succint prompting guide](https://rentry.org/sdhypertextbook#syntax)
     * [4chan prompting tips](https://rentry.org/hdgpromptassist#terms) (NSFW)
@@ -131,7 +133,7 @@ In any case, it's just really good at generating people and most of the models o
     * [Lots of popular models (also the prompting guide from earlier)](https://rentry.org/hdgpromptassist#models) (NSFW)
 
 ## LoRA
-[Low-Rank Adaptation (LoRA)](https://huggingface.co/blog/lora) allows fine-tuning for a given model. In the WebUI, you can add LoRAs to a model like icing on a cake. Training new LoRAs is also pretty easy. There are other, "ancestral" means of fine-tuning (e.g., textual inversion and hypernetworks), but LoRAs are the state-of-the-art.
+[Low-Rank Adaptation (LoRA)](https://huggingface.co/blog/lora) allows fine-tuning for a given model. More info on LoRAs [here](https://github.com/cloneofsimo/lora). In the WebUI, you can add LoRAs to a model like icing on a cake. Training new LoRAs is also pretty easy. There are other, "ancestral" means of fine-tuning (e.g., textual inversion and hypernetworks), but LoRAs are the state-of-the-art.
 
 * [ZTZ99A Tank](https://civitai.com/models/14234/ztz-99a-tank) - military tank LoRA (a specific tank) 
 * [Fighter Jets](https://civitai.com/models/6975/fighter-jet-lora) - fighter jet LoRA
@@ -259,6 +261,7 @@ Some extensions can make using the WebUI better. Get the Github link, go to Exte
 * [Dynamic Prompting](https://github.com/adieyal/sd-dynamic-prompts) - a template language for prompt generation that allows you to run random or combinatorial prompts to generate various images (uses wildcards)
     * Described some more [here](https://medium.com/@soapsudtycoon/stable-diffusion-prompt-engineering-toolkit-8f48bc447dc1)
 * [Model toolkit](https://github.com/arenatemp/stable-diffusion-webui-model-toolkit) - popular extension that helps you manage, edit and create models
+* [Model Converter](https://github.com/Akegarasu/sd-webui-model-converter) - useful for converting models, changing precisions etc., when you are training your own
 
 ## Testing
 So now you have some models, LoRAs and prompts... how can you test to see what works best? Below the Additional Networks pane, there is the Script dropdown. In here, click X/Y/Z plot. In the X type, select Checkpoint name; in the X values, click the button to the right to paste all of your models. In the Y type, try VAE, or perhaps seed, or CFG scale. Whatever attribute you pick, paste (or enter) the values you want to graph. For instance, if you have 5 models and 5 VAEs, you will make a grid of 25 images, comparing how each model outputs with each VAE. This is very versatile and can help you decide what to use. Just beware that if your X or Y axes are models of VAEs, it has to load the model or VAE weights for every combination, so it can take a while.
@@ -284,7 +287,7 @@ The exact parameters used (not including the model or sampler) for every one of 
 * Clip skip: 2
 * AddNet Enabled: True, AddNet Module 1: LoRA, AddNet Model 1: ztz99ATank_ztz99ATank(82a1a1085b2b), AddNet Weight A 1: 1, AddNet Weight B 1: 1
 
-# Advanced
+# WebUI Advanced
 In this section are the more advanced things you can do once you get a good familiarity with using models, LoRAs, VAEs, prompting, parameters, scripting and extensions in the txt2image tab of the WebUI.
 
 ## Prompt Editing
@@ -428,7 +431,12 @@ These are for MJ V4, mostly the same for MJ 5. All models are described [here](h
 # DreamStudio
 **TODO**
 
-DreamStudio (NOT DreamBooth) is the flagship platform from the Stability AI company. Their [site](https://dreamstudio.ai/) is a platform from which you can generate images. It sort of rests in between Midjourney and the WebUI in terms of open functionality.
+DreamStudio (NOT DreamBooth) is the flagship platform from the Stability AI company. Their [site](https://dreamstudio.ai/) is a platform, DreamBooth Studio, from which you can generate images. It sort of rests in between Midjourney and the WebUI in terms of open functionality. DreamBooth Studio seems to be built atop the [invoke.ai](https://github.com/invoke-ai/InvokeAI) platform, which you can install and run locally like the WebUI.
+
+# Stable Horde
+**TODO**
+
+The Stable Horde is a community effort to make stable diffusion free to everyone. It essentially works like Torrenting or Bitcoin hashing, where everyone contributes some of their GPU power to generate SD content. The Horde app can be accessed [here](https://aqualxx.github.io/stable-ui/).
 
 # DreamBooth
 **TODO**
@@ -436,6 +444,7 @@ DreamStudio (NOT DreamBooth) is the flagship platform from the Stability AI comp
 [DreamBooth](https://dreambooth.github.io/) (NOT DreamStudio) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
 * [DreamBooth Easy Tutorial](https://www.youtube.com/watch?v=tuSlUqmlZuc)
 * [DreamBooth 10 Minute Training](https://www.youtube.com/watch?v=usgqmQ0Mq7g)
+* [WebUI DreamBooth extension](https://github.com/d8ahazard/sd_dreambooth_extension)
 
 And some good guides:
 * [Reddit Advanced DreamBooth Advice](https://www.reddit.com/r/StableDiffusion/comments/114dxgl/advanced_advice_for_model_training_finetuning_and/)
@@ -444,6 +453,8 @@ And some good guides:
 
 A Google Colab for DreamBooth:
 * [TheLastBen DreamBooth Training Colab](https://colab.research.google.com/github/TheLastBen/fast-stable-diffusion/blob/main/fast-DreamBooth.ipynb) (same author as the SD Colab described in [Google Colab Setup](#google-colab-setup))
+
+There is also a model trainer called [EveryDream](https://github.com/victorchall/EveryDream2trainer). A full comparison between DreamBooth and EveryDream can be found [here](https://github.com/victorchall/EveryDream2trainer/blob/main/doc/NOTDREAMBOOTH.md).
 
 # Video Diffusion
 **TODO**
@@ -454,7 +465,7 @@ It is possible as of March-ish 2023 to use stable diffusion to generate videos. 
 * [Deforum](https://github.com/deforum-art/deforum-for-automatic1111-webui) - more functionality
 
 # Junkyard
-Stuff I don't know much about but need to look into
+**Stuff I don't know much about but need to look into**
 
 There is a process you can follow to get good results over and over... this will be refined over time.
 
@@ -467,3 +478,5 @@ chatgpt integration?
 outpainting
 
 dall-e 2
+
+deforum https://deforum.github.io/
