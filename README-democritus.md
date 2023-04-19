@@ -447,11 +447,6 @@ A Google Colab for DreamBooth:
 # Video Diffusion
 **TODO**
 
-It is possible as of March-ish 2023 to use stable diffusion to generate videos. Currently (April 2023), functionality is rather simplistic, as videos are generated from similar images, frame by frame, giving videos a sort of "flipbook" look. There are two primary extensions for the WebUI you can use:
-
-* [Animator](https://github.com/Animator-Anon/animator_extension) - easier
-* [Deforum](https://github.com/deforum-art/deforum-for-automatic1111-webui) - more functionality
-
 # Junkyard
 Stuff I don't know much about but need to look into
 
