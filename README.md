@@ -33,14 +33,14 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         5. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
     9. [Testing](#testing)
-2. [Advanced](#advanced) (WIP)
+2. [Advanced](#advanced)
     1. [Prompt Editing](#prompt-editing)
     2. [Xformers](#xformers)
     3. [Img2Img](#img2img)
     4. [Inpainting](#inpainting)
     5. [Extras](#checkpoint-merger)
     6. [ControlNets](#controlnets)
-    7. [Making New Stuff](#making-new-stuff)
+    7. [Making New Stuff](#making-new-stuff) (WIP)
         1. [Checkpoint Merger](#checkpoint-merger)
         2. [Training LoRAs](#training-loras)
         3. [Training New Models](#training-new-models)
@@ -48,8 +48,9 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 4. [Midjourney](#midjourney)
     1. [MJ Parameters](#mj-parameters)
     2. [MJ Advanced Prompts](#mj-advanced-prompts)
-5. [DreamBooth](#dreambooth)
-6. [Video Diffusion](#video-diffusion) (WIP)
+5. [DreamStudio](#dreamstudio) (WIP)
+6. [DreamBooth](#dreambooth) (WIP)
+7. [Video Diffusion](#video-diffusion) (WIP)
 
 # The Basics
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
@@ -359,8 +360,6 @@ This is all well and good, but sometimes you need better models or LoRAs for pro
   * [Mixing models](https://rentry.org/RentrySD/#132-model-mixing)
 
 ### Training New Models
-**TODO**
-
 See the section on [DreamBooth](#dreambooth).
 
 ### Checkpoint Merger
@@ -426,10 +425,15 @@ These are for MJ V4, mostly the same for MJ 5. All models are described [here](h
 * Multi prompts lets MJ consider two or more separate concepts individually. MJ versions 1-4 and niji only. For instance, "hot dog" will make images of the food, "hot:: dog" will make images of a warm canine. You can add weights to prompts too; for instance, "hot::2 dog" will make images of dogs on fire. MJ 1/2/3 accepts integer weights, MJ 4 can accept decimals. See this [doc](https://docs.midjourney.com/docs/multi-prompts).
 * Blending lets you upload 2-5 images to merge them into a new image. The /blend command is described [here](https://docs.midjourney.com/docs/blend).
 
+# DreamStudio
+**TODO**
+
+DreamStudio (NOT DreamBooth) is the flagship platform from the Stability AI company. Their [site](https://dreamstudio.ai/) is a platform from which you can generate images. It sort of rests in between Midjourney and the WebUI in terms of open functionality.
+
 # DreamBooth
 **TODO**
 
-[DreamBooth](https://dreambooth.github.io/) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
+[DreamBooth](https://dreambooth.github.io/) (NOT DreamStudio) was Google's implementation of a Stable Diffusion model fine-tuning technique. In short: you can use it to train models with your own pictures. You can use it directly from [here](https://github.com/XavierXiao/Dreambooth-Stable-Diffusion) or [here](https://github.com/JoePenna/Dreambooth-Stable-Diffusion). It's more complex than just downloading models and clicking around in the WebUI, as you are working to actually train and serialize a new model. Some videos summarize how to do it:
 * [DreamBooth Easy Tutorial](https://www.youtube.com/watch?v=tuSlUqmlZuc)
 * [DreamBooth 10 Minute Training](https://www.youtube.com/watch?v=usgqmQ0Mq7g)
 
