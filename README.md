@@ -19,6 +19,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 # Table of Contents
 1. [WebUI Basics](#webui-basics)
     1. [Set up Local GPU usage](#set-up-local-gpu-usage)
+       1. [Linux Setup](#linux-setup)
     2. [Going Deeper](#going-deeper)
         1. [Prompting](#prompting)
     3. [NovelAI Model](#novelai-model)
@@ -32,7 +33,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
         4. [Regenerating a Previously-Generated Image](#regenerating-a-previously-generated-image)
         5. [Troubleshooting Errors](#troubleshooting-errors)
     8. [Getting Comfortable](#getting-comfortable)
-    9. [Testing](#testing)
+    9.  [Testing](#testing)
 2. [WebUI Advanced](#webui-advanced)
     1. [Prompt Editing](#prompt-editing)
     2. [Xformers](#xformers)
@@ -57,7 +58,7 @@ What can you actually do with SD? Huggingface and some others have some apps in-
 It's somewhat daunting to get into this... but 4channers have done a good job making this approachable. Below are the steps I took, in the simplest terms. Your intent is to get the Stable Diffusion WebUI (built with Gradio) running locally so you can start prompting and making images.
 
 ## Set up Local GPU Usage
-We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the WebUI setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Linux or Windows 7+ and 20+GB disk space.
+We will do Google Colab Pro setup later, so we can run SD on any device anywhere we want; but to start, let's get the WebUI setup on a PC. You need 16GB RAM, a GPU with 2GB VRAM, Windows 7+ and 20+GB disk space.
 1. Finish the [starting setup guide](https://rentry.org/voldy)
     * I followed this up to step 7, after which it goes into the hentai stuff
     * Step 3 takes 15-45 minutes on average Internet speed, as the models are 5+ GB each
@@ -71,6 +72,58 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
 
 ![1](resources/1.PNG)
 
+### Linux Setup
+Ignore this entirely if you have Windows. I did manage to get it running on Linux too, although it's a bit more complicated. I started by following [this](https://ivonblog.com/en-us/posts/linux-stable-diffusion-webui/) guide, but it is rather poorly written, so below are the steps I took to get it running in Linux. I was using Linux Mint 20, which is an Ubuntu 20 distribution.
+
+1. Start by cloning the webui repo: ```git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git```
+2. Get a SD model (e.g., SD 1.5, like in the [previous section](#set-up-local-gpu-usage))
+3. Put the model ckpt file into ```stable-diffusion-webui/models/Stable-diffusion```
+4. Download Python (if you don't already have it): ```sudo apt install python3 python3-pip python3-virtualenv wget git```
+5. And the WebUI is very particular, so we need to install Conda, a virtual environment manager, to work inside of:
+```
+wget https://repo.anaconda.com/miniconda/Minconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+```
+6. Now create the environment: ```conda create --name sdwebui python=3.10.6```
+7. Activate the environment: ```conda activate sdwebui```
+8. Navigate to your WebUI folder and type ```./webui.sh```
+9. It should execute for a bit until you get an error about not being able to access CUDA/your GPU... this is fine, because it's our next step 
+10. Start by wiping any existing Nvidia drivers:
+```
+sudo apt update
+sudo apt purge *nvidia*
+```
+11. Now, sort of following some bits from [this](https://easylinuxtipsproject.blogspot.com/p/nvidia.html) guide, find out what GPU your Linux machine has (easiest way to do this is to open the Driver Manager app and your GPU will be listed; but there are a dozen ways, just Google it)
+12. Go to [this](https://www.nvidia.com/en-us/drivers/unix/) page and click the "Latest New Feature Branch" under Linux x86_64 (for me, it was 530.xx.xx)
+13. Click the tab "Supported Products" and Ctrl + F to find your GPU; if it is listed, proceed, otherwise back out and try "Latest Production Branch Version"; note the number, e.g., 530
+14. In a terminal, type: ```sudo add-apt-repository ppa:graphics-drivers/ppa```
+15. Update with ```sudo apt-get update```
+16. Launch the Driver Manager app and you should see a list of them; do NOT select the recommended one (e.g., nvidia-driver-530-open), select the exact one from earlier (e.g., nvidia-driver-530), and Apply Changes; OR, install it in the terminal with ```sudo apt-get install nvidia-driver-530```
+17. AT THIS POINT, you should get a popup through your CLI about Secure Boot, asking you for an 8-digit password: set it and write it down
+18. Reboot your PC and before your encryption/user login, you should see a BIOS-like screen (I am writing this from memory) with an option to input a MOK key; click it and enter your password, then submit and boot; some info [here](https://askubuntu.com/questions/927199/nvidia-smi-has-failed-because-it-couldnt-communicate-with-the-nvidia-driver-ma)
+19. Log in like normally and type the command ```nvidia-smi```; if successful, it should print a table; if not, it will say something like "Could not connect to the GPU; please ensure the most up to date driver is installed"
+20. Now to install CUDA (the last command here should print some info about your new CUDA install); from [this](https://idroot.us/install-cuda-linux-mint-20/) guide:
+```
+sudo apt update
+sudo apt install apt-transport-https ca-certificates gnupg
+sudo apt install nvidia-cuda-toolkit
+nvcc-version
+```
+21. Now go back and do steps 7-9; if you get this "ERROR: Cannot activate python venv, aborting...", go to the next step (otherwise, you are off to the races and will copy the IP address from the CLI like normal and can begin playing with SD)
+22. [This](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/1120) Github issue has some troubleshooting for this venv problem... for me, what worked was running
+```
+python3 -c 'import venv'
+python3 -m venv venv/
+```
+
+And then going to the ```/stable-diffusion-webui``` folder and running:
+```
+rm -rf venv/
+python3 -m venv venv/
+```
+
+After that, it worked for me.
 ## Going Deeper
 
 1. Read up on prompting techniques, because there are lots of things to know (e.g., positive prompt vs. negative prompt, sampling steps, sampling method, etc.)
