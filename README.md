@@ -157,7 +157,7 @@ And another good [guide](https://stable-diffusion-art.com/prompt-guide/) says th
 
 ```<subject> <medium> <style> <artist> <website> <resolution> <additional details> <color> <lighting> ```
 
-A seminal paper on prompt engineering txt2img models, [here](https://arxiv.org/pdf/2109.06977.pdf).
+A seminal paper on prompt engineering txt2img models, [here](https://arxiv.org/pdf/2109.06977.pdf). The definitive resource on LLM prompting, [here](https://github.com/dair-ai/Prompt-Engineering-Guide).
 
 Whatever you prompt, try to follow some sort of structure so your process is replicable. Below are the necessary prompt syntax elements:
 * () = x1.05 modifier
