@@ -69,6 +69,7 @@ We will do Google Colab Pro setup later, so we can run SD on any device anywhere
     1. Copy the URL the CLI outputs once done, e.g., ```127.0.0.1:7860``` (do **NOT** use Ctrl + C because this command can close the CLI)
     2. Paste into browser and voila; try a prompt and you're off to the races
     3. Images will be saved automatically when generated to ```stable-diffusion-webui\outputs\txt2img-images\<date>```
+3. Remember, to update, just open a CLI in the stable-diffusion-webui folder and enter the command ```git pull```
 
 ![1](resources/1.PNG)
 
