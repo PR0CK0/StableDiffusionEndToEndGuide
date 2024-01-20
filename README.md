@@ -301,6 +301,13 @@ I got a few errors now and again. Mostly out of memory (VRAM) errors that were f
 * Face restoration Codeformer fix [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/8416) (if it does break, try resetting your Internet first)
 * Slow model loading (when switching to a new one) is probably because .safetensors files load slowly if things aren't configured properly. [This](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/5893) thread discusses it.
 
+One really common issue stems from having an incorrect Python version or Torch version. You will get errors like "cannot install Torch" or "Torch cannot find GPU". The simplest fix is:
+1. Uninstall any Python version you have updated, because the SD WebUI expects 3.10.6 (I have used 3.11.5 and ignored the starting error just fine, but 3.10.6 seems to work best) (you can also use a version manager if you're advanced enough)
+3. Install Python 3.10.6, making sure to add it to your PATH (both your ```Python``` folder and the ```Python/Scripts``` folders)
+4. Delete the ```venv``` folder in your ```stable-diffusion-webui``` folder
+5. Run ```stable-diffusion-webui\webui-user.bat``` and let it re-build the venv properly
+6. Enjoy
+
 All commandline arguments can be found [here](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings).
 
 ## Getting Comfortable
